@@ -27,6 +27,7 @@
   * Setup SSH server and 2FA (google: "google authenticator ssh")
   * Generate ssh keys (4096 bit)
   * Install ansible, mollyguard
+    * Set `ALWAYS_QUERY_HOSTNAME` to `yes` in `/etc/molly-guard/rc`
   * Create ansible inventory from network map
   * (Optional) Add system aliases to `/etc/host`
   * Start running scripts:
