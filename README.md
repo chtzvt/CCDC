@@ -6,21 +6,26 @@
 
 #### Needed scripts
 * Panolpy-style set root ssh PubKey and kick everyone else out script
-* Ansible:
-  * Backup Playbook
+* Ansible Tasks:
+  * Backup
     * Backup /etc on all systems, move offsite
     * Backup /var/www on all web systems (or other webroot)
-  * Firewall Playbook
+  * Firewall
     * Set basic IPTables to allow us to SSH in
     * Set firewall to log and connection limit
     * Set firewall for all SSH boxes to let
     * Set firewall for all web/http boxes
     * Other??
-  * Status Playbook
+  * Setup
+    * Install tripwire & setup
+    * Install fail2ban on ssh servers
+    * Install mod_evasive and mod_security (?) on web servers
+  * Status
     * Run `w` and `netstat -planet` and `ss`, filter and print for all servers
     * Cat access logs and filter for all web servers
     * Cat auth logs and filter for all ssh servers
-  * Users Playbook
+    * Tripwire status
+  * Users
     * Add linuxuser
     * Add list of users from CSV
     * Change all user passwords
@@ -35,6 +40,12 @@
   * One person starts securing our base server
   * One person types password list into file, generates SSH PubKey
   * One person types up Panoply-style script to change root passwords and keys (using password list and generated keys)
+  * One person types systems into ansible inventory (`/etc/ansible/hosts`)
+
+##### Next Tasks
+
+* Secure MySQL
+* Secure Web App admin accounts
 
 #### Notes
 
