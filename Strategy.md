@@ -20,12 +20,12 @@
   * Check other configuration file options
   * (Web app) Secure PHP
 
-## Automation Setup (10 minutes)
+## Automation Setup (20 minutes)
 
   * Deploy secure ISO on unused laptop to create JumpHost
-  * Firewall - only port 22 tcp in and out
-  * Install `molly-guard`
-    * Set `ALWAYS_QUERY_HOSTNAME` to `yes` in `/etc/molly-guard/rc`
+  * Install `molly-guard`, `oathtool`, `ansible`, `htop`, `git`
+  * Start installing `xubuntu-deskptop` in background
+  * Remove (and purge) `avahi-daemon`, `cups`, `gvfs`
   * Install `libpam-google-authenticator`
     * Do you want authentication tokens to be time-based (y/n) y
     * Do you want me to update your "~/.google_authenticator" file (y/n) y
@@ -37,13 +37,16 @@ possible time-skew between the client and the server ... (y/n) n
     * Don't comment `@include common-auth` in `/etc/pam.d/sshd`
     * Use `AuthenticationMethods publickey,password keyboard-interactive`
     * Write down recovery keys on paper
-  * Install `oathtool`
+  * Configure `molly-guard`
+    * Set `ALWAYS_QUERY_HOSTNAME` to `yes` in `/etc/molly-guard/rc`
+  * Configure `oathtool`
     * Put in `/usr/local/bin/token`: `oathtool --base32 --totp "<secret_key>"`
+  * Firewall - only port 22 tcp in and out
   * Generate ssh keys (4096 bit)
     * Copy ssh keys to flash drive
-  * Install ansible
   * Create ansible inventory from network map
   * (Optional) Add system aliases to `/etc/host`
+  * (Optional) Replace Firefox with Chrome (need to install `libappindicator1` and `libindicator7` first)
   * Start running scripts:
     * Deploy keys
     * Backup `/home` and `/src/` into `/backup`
