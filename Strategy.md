@@ -24,10 +24,24 @@
 
   * Deploy secure ISO on unused laptop to create JumpHost
   * Firewall - only port 22 tcp in and out
-  * Setup SSH server and 2FA (google: "google authenticator ssh")
-  * Generate ssh keys (4096 bit)
-  * Install ansible, mollyguard
+  * Install `molly-guard`
     * Set `ALWAYS_QUERY_HOSTNAME` to `yes` in `/etc/molly-guard/rc`
+  * Install `libpam-google-authenticator`
+    * Do you want authentication tokens to be time-based (y/n) y
+    * Do you want me to update your "~/.google_authenticator" file (y/n) y
+    * Do you want to disallow multiple uses of the same authentication token? ... (y/n) n
+    * By default, tokens are good for 30 seconds and in order to compensate for
+possible time-skew between the client and the server ... (y/n) n
+    * Do you want to enable rate-limiting (y/n) y
+    * Follow rest of steps from DigitalOcean article, starting from step 2 (google: "google authenticator ssh")
+    * Don't comment `@include common-auth` in `/etc/pam.d/sshd`
+    * Use `AuthenticationMethods publickey,password keyboard-interactive`
+    * Write down recovery keys on paper
+  * Install `oathtool`
+    * Put in `/usr/local/bin/token`: `oathtool --base32 --totp "<secret_key>"`
+  * Generate ssh keys (4096 bit)
+    * Copy ssh keys to flash drive
+  * Install ansible
   * Create ansible inventory from network map
   * (Optional) Add system aliases to `/etc/host`
   * Start running scripts:
