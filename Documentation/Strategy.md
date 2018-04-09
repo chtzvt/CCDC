@@ -1,13 +1,13 @@
 # Strategy
 
-## Initial security (3 minutes)
+## Initial security (10 minutes)
 
 * Each SSH's onto 2 (pre-assigned) systems with default creds
+* Start backup of `/etc,` web root, MySQL database
 * Change passwords
   * root
   * `mysql_secure_installation`
   * Web app admin page
-* Start backup of `/etc,` web root, MySQL database
 * Quick system audit - what else is running? (`netstat`, `ss`, `ps`, `w`)
 
 ## Startup Hardening (10-30 minutes)
