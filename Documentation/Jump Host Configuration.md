@@ -52,6 +52,16 @@ PubkeyAuthentication no
 You may optionally install anti-brute forcing measures such as `fail2ban`, but you should note that
 Google Authenticator has a facility for such rate limiting built-in.
 
+Additionally, add the following to `/home/toads/.ssh/config` and `/etc/ssh/ssh_config`:
+
+```
+Host *
+  ForwardX11 no
+  ForwardAgent no
+```
+
+This configuration will globally disable SSH agent forwarding, which will reduce the likelihood of key compromise.
+
 ### Google Authenticator
 
 After installing `libpam-google-authenticator`, run `google-authenticator` as the user to be exposed via SSH and follow the prompts accordingly:
