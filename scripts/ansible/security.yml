@@ -1,0 +1,16 @@
+- hosts: all
+  tasks:
+  - package: name=fail2ban status=present
+  - file: path=/etc/passwd owner=root group=root mode=0644
+  - file: path=/etc/shadow owner=root group=root mode=0640
+  - name: Disallow root SSH access
+    lineinfile: 
+      dest: /etc/ssh/sshd_config
+      regexp: "^PermitRootLogin"
+      line: "PermitRootLogin without-password"
+      state: present
+      validate: '/usr/sbin/sshd -d'
+    notify: Restart ssh
+  handlers:
+  - name: Restart ssh
+    service: name=ssh state=restarted
