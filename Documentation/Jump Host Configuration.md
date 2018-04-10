@@ -46,7 +46,7 @@ Update `/etc/ssh/sshd_config` accordingly to reflect the following configuration
 PermitRootLogin no
 AllowUsers toads
 PasswordAuthentication yes
-PublickeyAuthentication no
+PubkeyAuthentication no
 ```
 
 You may optionally install anti-brute forcing measures such as `fail2ban`, but you should note that
