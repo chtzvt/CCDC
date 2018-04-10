@@ -106,7 +106,7 @@ Write the following to `/usr/local/bin/token`:
 
 ```
 #!/usr/bin/env bash
-oathtool --base32 --totp "((token goes here))"
+oathtool --base32 --totp "((secret key goes here))"
 ```
 
 Finally, `chmod +x /usr/local/bin/token`
