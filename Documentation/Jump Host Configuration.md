@@ -135,7 +135,7 @@ As the Jump Box is a shared resource, this protection is vital. The following co
 ### Firewall
 
 - As the Jump Box will be used purely for configuration management, allow only port 22 tcp in and out.
-  
+
   - _Note: If you have installed a web server on this machine, you will need to update the system firewall accordingly_
 
 

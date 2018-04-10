@@ -1,13 +1,14 @@
 # Strategy
 
-## Initial security (3 minutes)
+## Initial security (10 minutes)
 
-* Each SSH's onto 2 (pre-assigned) systems with default creds
+* Each SSH into 2 (pre-assigned) systems with default creds
+* Start backup of `/etc,` web root, MySQL database to `/backup`
 * Change passwords
   * root
   * `mysql_secure_installation`
   * Web app admin page
-* Start backup of `/etc,` web root, MySQL database
+* Quick save of filesystem: `ls -Rl -Iproc / > /backup/files.save`
 * Quick system audit - what else is running? (`netstat`, `ss`, `ps`, `w`)
 
 ## Startup Hardening (10-30 minutes)
@@ -24,7 +25,7 @@
 
   * Deploy secure ISO on unused laptop to create JumpHost
   * Follow the installation and configuration procedure in **Jump Host Configuration.md**.
-  * Create ansible inventory from network map  
+  * Create ansible inventory from network map in `/etc/ansible/hosts`
   * Start running scripts:
     * Deploy keys
     * Backup `/home` and `/src/` into `/backup`
@@ -33,3 +34,10 @@
   * Type scripts to use later:
     * Get status
     * Change all user passwords
+
+## Rest of Competition (2 days)
+
+  * Do injects
+  * Keep Red Team out
+  * Keep services up
+  * Win
