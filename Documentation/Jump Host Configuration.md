@@ -129,7 +129,7 @@ should additionally be backed up to some kind of removable media.
 Molly-guard provides an important mechanism to prevent unintentional shutdowns of the host machine.
 As the Jump Box is a shared resource, this protection is vital. The following configuration will ensure that Molly-guard remains active for any open tty:
 
-  * Set `ALWAYS_QUERY_HOSTNAME` to `yes` in `/etc/molly-guard/rc`
+  * Set `ALWAYS_QUERY_HOSTNAME` to `true` in `/etc/molly-guard/rc`
 
 
 ### Firewall
