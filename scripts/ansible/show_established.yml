@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+  - command: netstat -tpn
+    when: ansible_os_family == "Debian"
+  - command: sockstat -4
+    when: ansible_os_family == "FreeBSD"
+  - command: netstat -an | grep established
+    when: ansible_os_family == "Solaris" or ansible_os_family == "Suse"
