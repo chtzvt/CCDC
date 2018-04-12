@@ -62,8 +62,8 @@ Host *
 
 This configuration will globally disable SSH agent forwarding, which will reduce the likelihood of key compromise.
 
-Finally, you'll need to run `copy_keys.sh` to copy your jump host's public keys to each of your managed servers.
-Additionally, you'll want to run the generated `mount_sshfs.sh` script in order to connect each system's root filesystem
+Finally, you'll need to type up and run `copy_keys.sh` to copy your jump host's public keys to each of your managed servers.
+Additionally, you'll want to type up and run the `mount_sshfs.sh` script in order to connect each system's root filesystem
 mounts.
 
 ### SSHFS Options
@@ -144,13 +144,27 @@ Save this keypair for the local user from which Ansible scripts will be launched
 should additionally be backed up to some kind of removable media.
 
 
-### Configure Molly-Guard
+### Molly-Guard
 
 Molly-guard provides an important mechanism to prevent unintentional shutdowns of the host machine.
 As the Jump Box is a shared resource, this protection is vital. The following configuration will ensure that Molly-guard remains active for any open tty:
 
   * Set `ALWAYS_QUERY_HOSTNAME` to `true` in `/etc/molly-guard/rc`
 
+### Tripwire
+
+We want to use Tripwire to scan all the mounted SSH systems for changes.
+
+```
+apt install tripwire
+```
+Enter site and local passphrases when prompted.
+
+Then, run `procedually_generate_tripwire_policy.sh`.
+```
+twadmin -m P ~/twpol.txt
+tripwire --init
+```
 
 ### Firewall
 
@@ -159,6 +173,29 @@ As the Jump Box is a shared resource, this protection is vital. The following co
 - It is recommended that ARP entries be frozen at some point in time.
 
   - _Note: If you have installed a web server on this machine, you will need to update the system firewall accordingly_
+
+### Ansible
+
+Open the `/etc/ansible/hosts` file:
+  * Add `[all:vars] ansible_user=admin` at top of file
+  * Look through /etc/hosts and add all of the servers to the appropriate categories
+    * Put all servers under the `[all]` header
+    * Put web servers under the `[web]` header
+    * Put ssh servers under the `[ssh]` header
+    * Put debian-based servers under the `[debian]` header
+    * Put RHEL-based servers under the `[rhel]` header
+    * So on and so forth
+
+Some *BSD systems may not have python installed:
+  * Run `pkg install -y python27` on *BSD servers
+  * Add `[freebsd:vars] ansible_python_interpreter=/usr/local/bin/python2.7` to `/etc/ansible/hosts`
+
+Other servers (such as CentOS) may not have `python-simplejson` installed:
+  * Install `python-simplejson` using yum, apt, etc
+
+Database servers will need MySQL python packages installed:
+  * Fedora: `yum install MySQL-python`
+  * Debian/Ubuntu: `apt-get install python-mysqldb`
 
 
 ### Configure External Media
@@ -172,10 +209,5 @@ and mounting/unmounting devices.
 
 
 ### Optional Configuration
-
-  * Add system aliases to `/etc/hosts` (or via GUI panel in System Settings > Network > DNS)
-
-    - Combined with key authentication, this should make accessing servers very fast, secure, and painless.
-
 
   * Replace Firefox with Chrome
