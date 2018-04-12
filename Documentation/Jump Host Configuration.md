@@ -15,7 +15,7 @@
 
 ### Installing Misc. Dependencies
 
-`sudo apt-get update && sudo apt-get -y install libpam-google-authenticator molly-guard ansible oathtool mysql-client sshpass`
+`sudo apt-get update && sudo apt-get -y install libpam-google-authenticator molly-guard ansible oathtool mysql-client sshpass sshfs`
 
 ### Installing a Desktop Environment
 
@@ -61,6 +61,16 @@ Host *
 ```
 
 This configuration will globally disable SSH agent forwarding, which will reduce the likelihood of key compromise.
+
+Finally, you'll need to run `copy_keys.sh` to copy your jump host's public keys to each of your managed servers.
+Additionally, you'll want to run the generated `mount_sshfs.sh` script in order to connect each system's root filesystem
+mounts.
+
+### SSHFS Options
+
+Run the following:
+
+`echo "user_allow_other" | sudo tee -a /etc/fuse.conf`
 
 ### Google Authenticator
 
