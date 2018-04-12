@@ -15,7 +15,7 @@
 
 ### Installing Misc. Dependencies
 
-`sudo apt-get update && sudo apt-get -y install libpam-google-authenticator molly-guard ansible oathtool mysql-client sshpass`
+`sudo apt-get update && sudo apt-get -y install libpam-google-authenticator molly-guard ansible oathtool mysql-client sshpass sshfs`
 
 ### Installing a Desktop Environment
 
