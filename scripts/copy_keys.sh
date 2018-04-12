@@ -15,7 +15,7 @@ do
     ssh-copy-id root@$IP
     echo "$IP $HOSTNAME" | sudo tee -a /etc/hosts
     echo $HOSTNAME | sudo tee -a /etc/servers
-    echo "sshfs -o reconnect,ServerAliveInterval=20 root@$IP:/ /servers/$HOSTNAME" >>~/mount_sshfs.sh
+    echo "sshfs -o reconnect,ServerAliveInterval=20,allow_other root@$IP:/ /servers/$HOSTNAME" >>~/mount_sshfs.sh
     mkdir /servers/$HOSTNAME
     echo -e "All done!\n\n"
 done
