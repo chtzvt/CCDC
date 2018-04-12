@@ -1,0 +1,35 @@
+---
+- hosts: all
+  vars_prompt:
+  - name: "receiver_ip"
+    prompt: "IP address to forward logs to"
+  tasks:
+  - stat: path=/etc/rsyslog.d/50-default.conf
+    register: rsyslog_default_result
+  - stat: path=/etc/rsyslog.conf
+    register: rsyslog_result
+  - lineinfile:
+      name: /etc/rsyslog.d/50-default.conf
+      regex: "\*\.\*\s+@"
+      line: "*.* @{{receiver_ip}}:514"
+    when: rsyslog_default_result.stat.exists == True
+    notify: Restart rsyslog
+  - lineinfile:
+      name: /etc/rsyslog.conf
+      regex: "\*\.\*\s+@"
+      line: "*.* @@{{receiver_ip}}:514"
+    when: rsyslog_result.stat.exists == True
+    notify: Restart rsyslog
+  - lineinfile:
+      name: /etc/syslog.conf
+      regex: "\*\.\*\s+@"
+      line: "*.* @{{receiver_ip}}"
+    when: rsyslog_result.stat.exists == False and rsyslog_default_result.stat.exists == False
+    notify: Restart syslog
+  handlers:
+  - name: Restart rsyslog
+    service: name=rsyslog state=restarted
+  - name: Restart syslog
+    service: name=syslog state=restarted
+
+

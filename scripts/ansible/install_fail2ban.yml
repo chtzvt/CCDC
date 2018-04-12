@@ -1,0 +1,4 @@
+# Note - Will probably fail on Solaris
+- hosts: all
+  tasks:
+  - package: name=fail2ban status=present
