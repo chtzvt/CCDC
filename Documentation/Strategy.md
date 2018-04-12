@@ -8,6 +8,7 @@
 * Change app passwords
   * `mysql_secure_installation`
   * Web app admin page
+* Check Sudoers and `/etc/group`
 * Quick system audit - what else is running? (`netstat`, `ss`, `ps`, `w`)
 
 ## Startup Hardening (10-30 minutes)
