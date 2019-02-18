@@ -27,4 +27,13 @@
     * Change all root passwords
   * Other ??
 
-### Windows (?)
+### Windows
+
+### Needed Items
+
+* Add existing scripts, including but not limited to:
+
+* Documentation on Nationals/rare services like Hmail, openssh, etc.
+
+* 30 Minute strategy
+
