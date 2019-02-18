@@ -5,7 +5,7 @@ Configure firewall - Rules for RDP and the immportant services.
 Change passwords for any service accounts (e.g. mysql, filezilla)
 Kill unknown sessions
 NLA for RDP
-Disable SMB1.0
+Disable SMB1.0 -> Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol
 Check listening ports
 Remove unwanted software and services
 Backup services
