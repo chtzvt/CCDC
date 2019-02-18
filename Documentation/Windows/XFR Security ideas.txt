@@ -1,0 +1,38 @@
+## Ideas from X-Force Red on security
+
+```
+ 
+https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access
+ 
+https://www.malwarearchaeology.com/cheat-sheets/
+ 
+http://adsecurity.org/
+ 
+https://posts.specterops.io/tagged/bloodhound?gi=3270315c3d6a
+ 
+-DIsable LLMNR
+-Disable WPAD
+-Disable Powershell 2, enable powershell v5, deploy poweshell transcription block logging, module logging and script block logging
+-use microsoft ata (advanced threat analytics)
+-deploy PAW (privileged access workstations)
+-deploy red forest
+-deploy local admin password solution (LAPS)
+-remove local admin
+-deploy credential guard
+-deploy device guard
+-deploy sysmon with the security taylor swift ruleset
+-deploy applocker
+-disable SMBv1 and enable smb signing
+-employ windows firewall blocking inbound 3389,445,139,137,5895/5896 unless authentication through a VPN from managed workstations
+-make sure nac and va scanners don't spray creds
+-look at mimikatz protection such as rdp restricted admin mode
+http://adsecurity.org/wp-content/uploads/2014/11/Delpy-CredentialDataChart.png
+http://adsecurity.org/wp-content/uploads/2014/11/Delpy-CredentialDataChart.png
+
+-deploy tier 0/1/2 isolation
+-secure dynamic dns updates
+-disable netbios-name services
+ 
+also purge group policy preferences files and unattended installation files
+Can't require outbound authentication on IPSec
+Can set DNS outbound rule to just services (if I do just dns client service chrome will work but hmail doesn't)
