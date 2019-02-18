@@ -32,6 +32,10 @@
 ### Needed Items
 
 * Add existing scripts, including but not limited to:
+ * Bulk import users
+ * Bulk change passwords
+ * Registry modifications
+ * etc.
 
 * Documentation on Nationals/rare services like Hmail, openssh, etc.
 
