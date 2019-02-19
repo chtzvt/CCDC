@@ -1,7 +1,7 @@
 # Windows CCDC 30 Minute Strategy
 
 ## Please Read 
-Before you do anything remember to use your 
+Before you do anything remember to use your head and assess the situation. Don't blindly follow any guide without understanding what you are doing first! 
 
 ## First 10 Minutes 
 - [ ] Enumerate users, groups, and scored services
@@ -19,7 +19,7 @@ Before you do anything remember to use your
 - [ ] Remove unwanted software and services
 
 
-## Final 10 Minutes (30 minute
+## Final 10 Minutes (30 minute) 
 - [ ] Check for Backdoors: Run AV, stickey keys, backdoors in services, Autoruns
 - [ ] Setup ip blocking software
 - [ ] Patch Windows and Critical service
