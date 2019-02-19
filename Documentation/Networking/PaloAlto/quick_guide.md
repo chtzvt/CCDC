@@ -386,6 +386,32 @@ ID        application     state   type flag   src[sport]/zone/proto (translated 
 130911    0               ACTIVE  FLOW        10.5.20.110[139]/corp-trust/6 (10.5.20.110[139])
 ```
 
+## Rule Hit-Counts
+
+```> show rule-hit-count vsys vsys-name vsys1 rule-base security rules all```
+
+```
+Rule Name                                                         Hit Count       Last Hit Timestamp            Last Reset Timestamp          First Hit Timestamp
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SPLUNK                                                            19276           Mon Feb 18 20:46:37 2019      -                             Sun Feb 17 15:53:48 2019
+WEB-1                                                             700811          Mon Feb 18 20:46:41 2019      -                             Sun Feb 17 15:41:49 2019
+WEB                                                               47087           Sun Feb 17 16:09:11 2019      -                             Sun Feb 17 14:38:08 2019
+NIX-DNS                                                           10986           Mon Feb 18 20:46:38 2019      -                             Sun Feb 17 14:28:47 2019
+NIX-SQL                                                           7338            Mon Feb 18 20:46:28 2019      -                             Sun Feb 17 14:28:28 2019
+NIX-ECOM                                                          7592            Mon Feb 18 20:46:38 2019      -                             Sun Feb 17 14:21:10 2019
+NIX-WEB                                                           7447            Mon Feb 18 20:46:41 2019      -                             Sun Feb 17 14:28:50 2019
+WIN-WRK-A                                                         20317           Mon Feb 18 20:46:05 2019      -                             Sun Feb 17 14:28:39 2019
+WIN-WRK-B                                                         11127           Mon Feb 18 20:46:37 2019      -                             Sun Feb 17 14:28:38 2019
+WIN-AD-A                                                          10963           Mon Feb 18 20:46:24 2019      -                             Sun Feb 17 14:28:28 2019
+WIN-AD-B                                                          10942           Mon Feb 18 20:46:17 2019      -                             Sun Feb 17 14:28:34 2019
+interzone                                                         20598           Mon Feb 18 20:45:58 2019      -                             Sun Feb 17 15:01:40 2019
+PING                                                              384546          Mon Feb 18 20:46:42 2019      -                             Sun Feb 17 14:09:32 2019
+DENY                                                              23662           Mon Feb 18 20:46:42 2019      -                             Sun Feb 17 14:31:10 2019
+ANYANY                                                            0               -                             Sun Feb 17 14:32:11 2019      -
+intrazone-default                                                 0               -                             -                             -
+interzone-default                                                 0               -                             -                             -
+```
+
 ## Advanced Tooling
 
 ### URL Filtering
