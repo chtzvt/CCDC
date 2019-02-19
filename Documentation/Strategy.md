@@ -30,6 +30,10 @@
     * Pull backups from `/backup`, move to flash drive
     * Security: Install fail2ban, check permissions, restrict ssh root access
 
+## Egress Filter Enabled (~1-2 Hours)
+
+  * Firewall mgr will implement the primary egress filter. Be prepared to lose WAN access from services
+
 ## Rest of Competition (2 days)
 
   * Do injects
