@@ -32,9 +32,12 @@ Set Traffic Analysis on ANY-ANY
 ```
 
 Set Rulebase for Whitelists
+**Remember:** Firewall policy uses PRENAT IP Addresses, but POSTNAT Zones
+
 ```config
-# set rulebase security rules ____ from ___ to ___ source any destination ____-EXTERNAL application ____ service ____ action allow
+# set rulebase security rules <name> from <source zone> to <destination zone> source <ip> destination <ip> application [<application>] service <any/application-default/service name> action <allow/deny> (press enter)
 ```
+
 |Host|External IP|Internal IP|Services?
 |---|---|---|---|
 |**Phantom**                   |172.25.20.   |172.20.240.10   |---|
