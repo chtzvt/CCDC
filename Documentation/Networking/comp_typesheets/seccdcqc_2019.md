@@ -10,6 +10,12 @@ Ensure only admin is a user
 # show mgt-config users
 ```
 
+Check Management Access
+
+```config
+# show deviceconfig system
+```
+
 Set Admin Password
 
 ```config
