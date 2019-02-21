@@ -1,0 +1,465 @@
+set deviceconfig system type static
+set deviceconfig system update-server updates.paloaltonetworks.com
+set deviceconfig system update-schedule threats recurring weekly day-of-week wednesday
+set deviceconfig system update-schedule threats recurring weekly at 01:02
+set deviceconfig system update-schedule threats recurring weekly action download-only
+set deviceconfig system timezone America/New_York
+set deviceconfig system service disable-telnet yes
+set deviceconfig system service disable-http yes
+set deviceconfig system hostname palo-vm-50
+set deviceconfig system ip-address 192.168.20.15
+set deviceconfig system netmask 255.255.255.0
+set deviceconfig system default-gateway 192.168.20.1
+set deviceconfig system login-banner "UCF CCDC PALO ALTO"
+set deviceconfig system dns-setting servers primary 192.168.20.3
+set deviceconfig system dns-setting servers secondary 1.1.1.1
+set deviceconfig setting config rematch yes
+set deviceconfig setting management hostname-type-in-syslog FQDN
+set deviceconfig setting auto-mac-detect yes
+set network interface ethernet ethernet1/1 layer3 ipv6 neighbor-discovery router-advertisement enable no
+set network interface ethernet ethernet1/1 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/1 layer3 ip 192.168.20.2/24
+set network interface ethernet ethernet1/1 layer3 interface-management-profile Mgmt
+set network interface ethernet ethernet1/1 layer3 lldp enable no
+set network interface ethernet ethernet1/1 comment ".20 Net"
+set network interface ethernet ethernet1/2 layer3 ipv6 neighbor-discovery router-advertisement enable no
+set network interface ethernet ethernet1/2 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/2 layer3 ip 172.20.240.254/24
+set network interface ethernet ethernet1/2 layer3 lldp enable no
+set network interface ethernet ethernet1/2 comment "Tertiary (20.240.0/24) [INTERNAL]"
+set network interface ethernet ethernet1/3 layer3 ipv6 neighbor-discovery router-advertisement enable no
+set network interface ethernet ethernet1/3 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/3 layer3 ip 172.20.241.254/24
+set network interface ethernet ethernet1/3 layer3 lldp enable no
+set network interface ethernet ethernet1/3 comment "Clientside (20.241) [PUBLIC]"
+set network interface ethernet ethernet1/4 layer3 ipv6 neighbor-discovery router-advertisement enable no
+set network interface ethernet ethernet1/4 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/4 layer3 ip 172.20.242.254/24
+set network interface ethernet ethernet1/4 layer3 lldp enable no
+set network interface ethernet ethernet1/4 comment "Serverside (20.242) [USER]"
+set network interface tunnel units
+set network profiles monitor-profile default interval 3
+set network profiles monitor-profile default threshold 5
+set network profiles monitor-profile default action wait-recover
+set network profiles interface-management-profile Mgmt https yes
+set network profiles interface-management-profile Mgmt ssh yes
+set network profiles interface-management-profile Mgmt ping yes
+set network profiles zone-protection-profile LAN flood tcp-syn enable yes
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies alarm-rate 1000
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies activate-rate 0
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies maximal-rate 1000000
+set network profiles zone-protection-profile LAN flood udp red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood udp red activate-rate 10000
+set network profiles zone-protection-profile LAN flood udp red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood udp enable yes
+set network profiles zone-protection-profile LAN flood icmp red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood icmp red activate-rate 10000
+set network profiles zone-protection-profile LAN flood icmp red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood icmp enable yes
+set network profiles zone-protection-profile LAN flood icmpv6 red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood icmpv6 red activate-rate 10000
+set network profiles zone-protection-profile LAN flood icmpv6 red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood icmpv6 enable yes
+set network profiles zone-protection-profile LAN flood other-ip red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood other-ip red activate-rate 10000
+set network profiles zone-protection-profile LAN flood other-ip red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood other-ip enable yes
+set network profiles zone-protection-profile LAN scan 8001 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8001 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8001 interval 2
+set network profiles zone-protection-profile LAN scan 8001 threshold 100
+set network profiles zone-protection-profile LAN scan 8002 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8002 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8002 interval 10
+set network profiles zone-protection-profile LAN scan 8002 threshold 100
+set network profiles zone-protection-profile LAN scan 8003 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8003 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8003 interval 2
+set network profiles zone-protection-profile LAN scan 8003 threshold 100
+set network profiles zone-protection-profile LAN discard-ip-spoof yes
+set network profiles zone-protection-profile LAN discard-ip-frag yes
+set network profiles zone-protection-profile LAN description UNTRUST
+set network profiles zone-protection-profile LAN scan-white-list VPN ipv4 192.168.60.0/24
+set network profiles zone-protection-profile LAN scan-white-list alex ipv4 192.168.20.181/32
+set network profiles zone-protection-profile LAN discard-strict-source-routing no
+set network profiles zone-protection-profile LAN discard-security yes
+set network profiles zone-protection-profile LAN discard-loose-source-routing no
+set network profiles zone-protection-profile LAN discard-stream-id yes
+set network profiles zone-protection-profile LAN discard-timestamp yes
+set network profiles zone-protection-profile LAN discard-unknown-option yes
+set network profiles zone-protection-profile LAN discard-record-route yes
+set network profiles zone-protection-profile LAN discard-malformed-option yes
+set network profiles zone-protection-profile LAN discard-icmp-ping-zero-id yes
+set network profiles zone-protection-profile LAN discard-icmp-frag yes
+set network profiles zone-protection-profile LAN discard-icmp-large-packet yes
+set network profiles zone-protection-profile LAN discard-icmp-error yes
+set network ike crypto-profiles ike-crypto-profiles default encryption [ aes-128-cbc 3des ]
+set network ike crypto-profiles ike-crypto-profiles default hash sha1
+set network ike crypto-profiles ike-crypto-profiles default dh-group group2
+set network ike crypto-profiles ike-crypto-profiles default lifetime hours 8
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 encryption aes-128-cbc
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 hash sha256
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 dh-group group19
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 lifetime hours 8
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 encryption aes-256-cbc
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 hash sha384
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 dh-group group20
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 lifetime hours 8
+set network ike crypto-profiles ipsec-crypto-profiles default esp encryption [ aes-128-cbc 3des ]
+set network ike crypto-profiles ipsec-crypto-profiles default esp authentication sha1
+set network ike crypto-profiles ipsec-crypto-profiles default dh-group group2
+set network ike crypto-profiles ipsec-crypto-profiles default lifetime hours 1
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 esp encryption aes-128-gcm
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 esp authentication none
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 dh-group group19
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 lifetime hours 1
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 esp encryption aes-256-gcm
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 esp authentication none
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 dh-group group20
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 lifetime hours 1
+set network ike crypto-profiles global-protect-app-crypto-profiles default encryption aes-128-cbc
+set network ike crypto-profiles global-protect-app-crypto-profiles default authentication sha1
+set network ike gateway
+set network qos profile default class class1 priority real-time
+set network qos profile default class class2 priority high
+set network qos profile default class class3 priority high
+set network qos profile default class class4 priority medium
+set network qos profile default class class5 priority medium
+set network qos profile default class class6 priority low
+set network qos profile default class class7 priority low
+set network qos profile default class class8 priority low
+set network virtual-router default protocol bgp enable no
+set network virtual-router default protocol bgp dampening-profile default cutoff 1.25
+set network virtual-router default protocol bgp dampening-profile default reuse 0.5
+set network virtual-router default protocol bgp dampening-profile default max-hold-time 900
+set network virtual-router default protocol bgp dampening-profile default decay-half-life-reachable 300
+set network virtual-router default protocol bgp dampening-profile default decay-half-life-unreachable 900
+set network virtual-router default protocol bgp dampening-profile default enable yes
+set network virtual-router default protocol bgp routing-options graceful-restart enable yes
+set network virtual-router default protocol rip enable no
+set network virtual-router default protocol ospf enable no
+set network virtual-router default protocol ospfv3 enable no
+set network virtual-router default interface [ ethernet1/1 ethernet1/2 ethernet1/3 ethernet1/4 ]
+set network virtual-router default ecmp algorithm ip-modulo
+set network virtual-router default routing-table ip static-route Default path-monitor enable no
+set network virtual-router default routing-table ip static-route Default path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route Default path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route Default nexthop ip-address 192.168.20.1
+set network virtual-router default routing-table ip static-route Default bfd profile None
+set network virtual-router default routing-table ip static-route Default interface ethernet1/1
+set network virtual-router default routing-table ip static-route Default metric 10
+set network virtual-router default routing-table ip static-route Default destination 0.0.0.0/0
+set network virtual-router default routing-table ip static-route Default route-table unicast
+set network tunnel ipsec
+set network dns-proxy
+set network dhcp interface
+set shared application
+set shared application-group
+set shared service
+set shared service-group
+
+...
+...
+...
+
+set zone LAN network layer3 ethernet1/1
+set zone LAN network enable-packet-buffer-protection no
+set zone LAN network zone-protection-profile LAN
+set zone INTERNAL network layer3 ethernet1/2
+set zone PUBLIC network layer3 ethernet1/3
+set zone USER network layer3 ethernet1/4
+set zone USER network enable-packet-buffer-protection no
+set service-group
+set service http protocol tcp port 80
+set service DNS protocol udp port 53
+set service DNS protocol udp override no
+set schedule
+
+================================================================================
+FIREWALL rules
+================================================================================
+
+                    Optional Bit for Web Browsing
+                    ------
+                    set rulebase security rules WEB-1 from any
+                    set rulebase security rules WEB-1 to LAN
+                    set rulebase security rules WEB-1 application any
+                    set rulebase security rules WEB-1 service [ DNS service-http service-https ]
+                    set rulebase security rules WEB-1 action allow
+                    set rulebase security rules WEB-1 source any
+                    set rulebase security rules WEB-1 destination any
+                    set rulebase security rules WEB-1 source-user any
+                    set rulebase security rules WEB-1 category any
+                    set rulebase security rules WEB-1 hip-profiles any
+                    set rulebase security rules WEB-1 disabled no
+                    set rulebase security rules WEB-1 profile-setting profiles url-filtering C2
+                    set rulebase security rules WEB-1 profile-setting profiles wildfire-analysis default
+                    set rulebase security rules WEB-1 profile-setting profiles file-blocking "strict file blocking"
+                    set rulebase security rules WEB-1 profile-setting profiles virus default
+                    set rulebase security rules WEB-1 profile-setting profiles spyware strict
+                    set rulebase security rules WEB-1 profile-setting profiles vulnerability strict
+                    set rulebase security rules WEB from any
+                    set rulebase security rules WEB to LAN
+                    set rulebase security rules WEB application [ apt-get dns google-base pastebin splunk ssl web-browsing yum ]
+                    set rulebase security rules WEB service any
+                    set rulebase security rules WEB action allow
+                    set rulebase security rules WEB source any
+                    set rulebase security rules WEB destination any
+                    set rulebase security rules WEB source-user any
+                    set rulebase security rules WEB category any
+                    set rulebase security rules WEB hip-profiles any
+                    set rulebase security rules WEB disabled yes
+                    -------
+
+set rulebase security rules ANYANY to any
+set rulebase security rules ANYANY from any
+set rulebase security rules ANYANY source any
+set rulebase security rules ANYANY destination any
+set rulebase security rules ANYANY source-user any
+set rulebase security rules ANYANY category any
+set rulebase security rules ANYANY application any
+set rulebase security rules ANYANY service any
+set rulebase security rules ANYANY hip-profiles any
+set rulebase security rules ANYANY action allow
+set rulebase security rules interzone to [ INTERNAL PUBLIC USER ]
+set rulebase security rules interzone from [ INTERNAL PUBLIC USER ]
+set rulebase security rules interzone source any
+set rulebase security rules interzone destination any
+set rulebase security rules interzone source-user any
+set rulebase security rules interzone category any
+set rulebase security rules interzone application any
+set rulebase security rules interzone service application-default
+set rulebase security rules interzone hip-profiles any
+set rulebase security rules interzone action allow
+set rulebase security rules interzone rule-type interzone
+set rulebase security rules NIX-PHANTOM from LAN
+set rulebase security rules NIX-PHANTOM to USER
+set rulebase security rules NIX-PHANTOM destination NIX-DNS-EXT
+set rulebase security rules NIX-PHANTOM application [ ssh ]
+set rulebase security rules NIX-PHANTOM service application-default
+set rulebase security rules NIX-PHANTOM action allow
+set rulebase security rules NIX-PHANTOM source any
+set rulebase security rules NIX-PHANTOM source-user any
+set rulebase security rules NIX-PHANTOM category any
+set rulebase security rules NIX-PHANTOM hip-profiles any
+set rulebase security rules NIX-DNS from LAN
+set rulebase security rules NIX-DNS to USER
+set rulebase security rules NIX-DNS destination NIX-DNS-EXT
+set rulebase security rules NIX-DNS application [ dns ssh ]
+set rulebase security rules NIX-DNS service application-default
+set rulebase security rules NIX-DNS action allow
+set rulebase security rules NIX-DNS source any
+set rulebase security rules NIX-DNS source-user any
+set rulebase security rules NIX-DNS category any
+set rulebase security rules NIX-DNS hip-profiles any
+set rulebase security rules NIX-SQL from LAN
+set rulebase security rules NIX-SQL to INTERNAL
+set rulebase security rules NIX-SQL destination NIX-SQL-EXT
+set rulebase security rules NIX-SQL application [ mysql ssh ]
+set rulebase security rules NIX-SQL service application-default
+set rulebase security rules NIX-SQL action allow
+set rulebase security rules NIX-SQL source any
+set rulebase security rules NIX-SQL source-user any
+set rulebase security rules NIX-SQL category any
+set rulebase security rules NIX-SQL hip-profiles any
+set rulebase security rules NIX-ECOM from LAN
+set rulebase security rules NIX-ECOM to PUBLIC
+set rulebase security rules NIX-ECOM destination NIX-ECOM-EXT
+set rulebase security rules NIX-ECOM application [ ssh ssl web-browsing ]
+set rulebase security rules NIX-ECOM service application-default
+set rulebase security rules NIX-ECOM action allow
+set rulebase security rules NIX-ECOM source any
+set rulebase security rules NIX-ECOM source-user any
+set rulebase security rules NIX-ECOM category any
+set rulebase security rules NIX-ECOM hip-profiles any
+set rulebase security rules NIX-WEB from LAN
+set rulebase security rules NIX-WEB to PUBLIC
+set rulebase security rules NIX-WEB destination NIX-WEB-EXT
+set rulebase security rules NIX-WEB application [ ssl web-browsing ssh ]
+set rulebase security rules NIX-WEB service application-default
+set rulebase security rules NIX-WEB action allow
+set rulebase security rules NIX-WEB source any
+set rulebase security rules WIN-WRK-A from LAN
+set rulebase security rules WIN-WRK-A to USER
+set rulebase security rules WIN-WRK-A destination WIN-WRK-A-EXT
+set rulebase security rules WIN-WRK-A application [ ms-ds-smb ftp ssl web-browsing ms-rdp ]
+set rulebase security rules WIN-WRK-A service application-default
+set rulebase security rules WIN-WRK-A action allow
+set rulebase security rules WIN-WRK-A source any
+set rulebase security rules WIN-WRK-B from LAN
+set rulebase security rules WIN-WRK-B to USER
+set rulebase security rules WIN-WRK-B destination WIN-WRK-B-EXT
+set rulebase security rules WIN-WRK-B application [ ms-ds-smb ftp web-browsing ms-rdp ]
+set rulebase security rules WIN-WRK-B service application-default
+set rulebase security rules WIN-WRK-B action allow
+set rulebase security rules WIN-WRK-B source any
+set rulebase security rules WIN-AD-A from LAN
+set rulebase security rules WIN-AD-A to USER
+set rulebase security rules WIN-AD-A destination WIN-AD-A-EXT
+set rulebase security rules WIN-AD-A source any
+set rulebase security rules WIN-AD-A application [ dns ldap imap pop3 ms-rdp ]
+set rulebase security rules WIN-AD-A service application-default
+set rulebase security rules WIN-AD-A action allow
+set rulebase security rules WIN-AD-B from LAN
+set rulebase security rules WIN-AD-B to USER
+set rulebase security rules WIN-AD-B destination WIN-AD-B-EXT
+set rulebase security rules WIN-AD-B source any
+set rulebase security rules WIN-AD-B application [ dns ldap imap pop3 ms-rdp ]
+set rulebase security rules WIN-AD-B service application-default
+set rulebase security rules WIN-AD-B action allow
+set rulebase security rules PING from any
+set rulebase security rules PING to any
+set rulebase security rules PING application ping
+set rulebase security rules PING service application-default
+set rulebase security rules PING source any
+set rulebase security rules PING destination any
+set rulebase security rules PING action allow
+set rulebase security rules DENY from any
+set rulebase security rules DENY to any
+set rulebase security rules DENY source any
+set rulebase security rules DENY destination any
+set rulebase security rules DENY service any
+set rulebase security rules DENY application any
+set rulebase security rules DENY action drop
+set rulebase security rules DENY profile-setting profiles file-blocking "strict file blocking"
+set rulebase security rules DENY profile-setting profiles url-filtering C2
+set rulebase security rules DENY profile-setting profiles vulnerability strict
+set rulebase security rules DENY profile-setting profiles wildfire-analysis default
+set rulebase security rules DENY source-user any
+set rulebase security rules DENY category any
+set rulebase security rules DENY hip-profiles any
+
+================================================================================
+NAT RULES
+================================================================================
+
+set rulebase nat rules NIX-WRK-B source-translation static-ip translated-address WIN-WRK-B-EXT
+set rulebase nat rules NIX-WRK-B source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-WRK-B to LAN
+set rulebase nat rules NIX-WRK-B from USER
+set rulebase nat rules NIX-WRK-B source WIN-WRK-B
+set rulebase nat rules NIX-WRK-B destination any
+set rulebase nat rules NIX-WRK-B service any
+set rulebase nat rules NIX-WRK-B disabled no
+set rulebase nat rules NIX-WRK-A source-translation static-ip translated-address WIN-WRK-A-EXT
+set rulebase nat rules NIX-WRK-A source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-WRK-A to LAN
+set rulebase nat rules NIX-WRK-A from USER
+set rulebase nat rules NIX-WRK-A source WIN-WRK-A
+set rulebase nat rules NIX-WRK-A destination any
+set rulebase nat rules NIX-WRK-A service any
+set rulebase nat rules NIX-WRK-A disabled no
+set rulebase nat rules NIX-ECOM source-translation static-ip translated-address NIX-ECOM-EXT
+set rulebase nat rules NIX-ECOM source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-ECOM to LAN
+set rulebase nat rules NIX-ECOM from PUBLIC
+set rulebase nat rules NIX-ECOM source NIX-ECOM
+set rulebase nat rules NIX-ECOM destination any
+set rulebase nat rules NIX-ECOM service any
+set rulebase nat rules NIX-ECOM disabled no
+set rulebase nat rules WIN-AD-A source-translation static-ip translated-address WIN-AD-A-EXT
+set rulebase nat rules WIN-AD-A source-translation static-ip bi-directional yes
+set rulebase nat rules WIN-AD-A to LAN
+set rulebase nat rules WIN-AD-A from USER
+set rulebase nat rules WIN-AD-A source WIN-AD-A
+set rulebase nat rules WIN-AD-A destination any
+set rulebase nat rules WIN-AD-A service any
+set rulebase nat rules WIN-AD-A disabled no
+set rulebase nat rules WIN-AD-B source-translation static-ip translated-address WIN-AD-B-EXT
+set rulebase nat rules WIN-AD-B source-translation static-ip bi-directional yes
+set rulebase nat rules WIN-AD-B to LAN
+set rulebase nat rules WIN-AD-B from USER
+set rulebase nat rules WIN-AD-B source WIN-AD-B
+set rulebase nat rules WIN-AD-B destination any
+set rulebase nat rules WIN-AD-B service any
+set rulebase nat rules WIN-AD-B disabled no
+set rulebase nat rules NIX-DNS source-translation static-ip translated-address NIX-DNS-EXT
+set rulebase nat rules NIX-DNS source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-DNS to LAN
+set rulebase nat rules NIX-DNS from USER
+set rulebase nat rules NIX-DNS source NIX-DNS
+set rulebase nat rules NIX-DNS destination any
+set rulebase nat rules NIX-DNS service any
+set rulebase nat rules NIX-DNS disabled no
+set rulebase nat rules NIX-SQL source-translation static-ip translated-address NIX-SQL-EXT
+set rulebase nat rules NIX-SQL source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-SQL to LAN
+set rulebase nat rules NIX-SQL from INTERNAL
+set rulebase nat rules NIX-SQL source NIX-SQL
+set rulebase nat rules NIX-SQL destination any
+set rulebase nat rules NIX-SQL service any
+set rulebase nat rules NIX-SQL disabled no
+set rulebase nat rules NIX-SPLUNK source-translation static-ip translated-address NIX-SPLUNK-EXT
+set rulebase nat rules NIX-SPLUNK source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-SPLUNK to LAN
+set rulebase nat rules NIX-SPLUNK from PUBLIC
+set rulebase nat rules NIX-SPLUNK source NIX-SPLUNK
+set rulebase nat rules NIX-SPLUNK destination any
+set rulebase nat rules NIX-SPLUNK service any
+set rulebase nat rules NIX-SPLUNK disabled no
+set rulebase nat rules NIX-WEB source-translation static-ip translated-address NIX-WEB-EXT
+set rulebase nat rules NIX-WEB source-translation static-ip bi-directional yes
+set rulebase nat rules NIX-WEB to LAN
+set rulebase nat rules NIX-WEB from PUBLIC
+set rulebase nat rules NIX-WEB source NIX-WEB
+set rulebase nat rules NIX-WEB destination any
+set rulebase nat rules NIX-WEB service any
+set rulebase nat rules NIX-WEB disabled no
+
+================================================================================
+
+set profiles url-filtering C2 credential-enforcement mode disabled
+set profiles url-filtering C2 credential-enforcement log-severity medium
+set profiles url-filtering C2 credential-enforcement block [ abortion abused-drugs command-and-control dating educatio
+nal-institutions ]
+set profiles url-filtering C2 log-http-hdr-xff yes
+set profiles url-filtering C2 log-http-hdr-user-agent yes
+set profiles url-filtering C2 log-http-hdr-referer yes
+set profiles url-filtering C2 log-container-page-only no
+set profiles url-filtering C2 block-list [ ebay.com www.ebay.com ]
+set profiles url-filtering C2 action block
+set profiles url-filtering C2 block [ abortion abused-drugs command-and-control dating educational-institutions ]
+set import network interface [ ethernet1/1 ethernet1/2 ethernet1/3 ethernet1/4 ]
+set application-group
+set application
+
+================================================================================
+Addresses
+================================================================================
+INTERNAL (172.20.240.0/24)
+
+set address NIX-PHANTOM ip-netmask 172.20.240.10/32
+set address NIX-PHANTOM-EXT ip-netmask 172.25.209.97/32
+
+set address NIX-SQL ip-netmask 172.20.240.20/32
+set address NIX-SQL-EXT ip-netmask 172.25.209.20/32
+
+=========
+PUBLIC (172.20.241.0/24)
+
+set address NIX-WEB ip-netmask 172.20.241.40/32
+set address NIX-WEB-EXT ip-netmask 172.25.209.39/32
+
+set address NIX-SPLUNK ip-netmask 172.20.241.20/32
+set address NIX-SPLUNK-EXT ip-netmask 172.25.209.9/32
+
+set address NIX-ECOM ip-netmask 172.20.241.30/32
+set address NIX-ECOM-EXT ip-netmask 172.25.209.11/32
+
+=========
+USER (172.20.242.0/24)
+
+set address WIN-AD ip-netmask 172.20.242.200/32
+set address WIN-AD-EXT ip-netmask 172.25.209.27/32
+
+set address WIN-WRK ip-netmask 172.20.242.100/32
+set address WIN-WRK-EXT ip-netmask DYNAMIC? (Probs not scored).. Don't Worry
+
+set address NIX-DNS ip-netmask 172.20.242.10/32
+set address NIX-DNS-EXT ip-netmask 172.25.209.23/32
+
+================================================================================
+
+set mgt-config users admin phash REEEEE
+set mgt-config users admin permissions role-based superuser yes
+set mgt-config users admin public-key THISISSUPPOSEDTOBEAKEYBUTIT'SNOTFORNOW
