@@ -282,14 +282,14 @@ set rulebase security rules NIX-WEB source any
 set rulebase security rules WIN-WRK-A from LAN
 set rulebase security rules WIN-WRK-A to USER
 set rulebase security rules WIN-WRK-A destination WIN-WRK-A-EXT
-set rulebase security rules WIN-WRK-A application [ ms-ds-smb ftp ssl web-browsing ms-rdp ]
+set rulebase security rules WIN-WRK-A application [ ms-ds-smb ftp ssl web-browsing ]
 set rulebase security rules WIN-WRK-A service application-default
 set rulebase security rules WIN-WRK-A action allow
 set rulebase security rules WIN-WRK-A source any
 set rulebase security rules WIN-WRK-B from LAN
 set rulebase security rules WIN-WRK-B to USER
 set rulebase security rules WIN-WRK-B destination WIN-WRK-B-EXT
-set rulebase security rules WIN-WRK-B application [ ms-ds-smb ftp web-browsing ms-rdp ]
+set rulebase security rules WIN-WRK-B application [ ms-ds-smb ftp web-browsing ]
 set rulebase security rules WIN-WRK-B service application-default
 set rulebase security rules WIN-WRK-B action allow
 set rulebase security rules WIN-WRK-B source any
@@ -297,14 +297,14 @@ set rulebase security rules WIN-AD-A from LAN
 set rulebase security rules WIN-AD-A to USER
 set rulebase security rules WIN-AD-A destination WIN-AD-A-EXT
 set rulebase security rules WIN-AD-A source any
-set rulebase security rules WIN-AD-A application [ dns ldap imap pop3 ms-rdp ]
+set rulebase security rules WIN-AD-A application [ dns ldap imap pop3 ]
 set rulebase security rules WIN-AD-A service application-default
 set rulebase security rules WIN-AD-A action allow
 set rulebase security rules WIN-AD-B from LAN
 set rulebase security rules WIN-AD-B to USER
 set rulebase security rules WIN-AD-B destination WIN-AD-B-EXT
 set rulebase security rules WIN-AD-B source any
-set rulebase security rules WIN-AD-B application [ dns ldap imap pop3 ms-rdp ]
+set rulebase security rules WIN-AD-B application [ dns ldap imap pop3 ]
 set rulebase security rules WIN-AD-B service application-default
 set rulebase security rules WIN-AD-B action allow
 set rulebase security rules PING from any
