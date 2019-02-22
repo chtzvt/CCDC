@@ -8,6 +8,7 @@ Ensure only admin is a user
 
 ```config
 # show mgt-config users
+# delete mgt-config users ANYTHING_NOT_ADMIN
 ```
 
 Check Management Access
