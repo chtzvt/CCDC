@@ -15,6 +15,9 @@ Check Management Access
 
 ```config
 # show deviceconfig system
+# set deviceconfig system service disable-http yes
+...
+# delete deviceconfig setting custom-logo
 ```
 
 Set Admin Password
