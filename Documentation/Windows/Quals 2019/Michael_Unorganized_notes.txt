@@ -1,0 +1,55 @@
+My random notes from Documentation today. Don't try to interpret these.
+
+AD.frog.com
+
+Registry key HKLM\software\microsoft\windows\currentversion\run
+C:\Windows\System32\Isass.exe
+DO IR FORM
+Created Wednesday, March 21 2018 6:17 PM
+
+Has Unix subsystem
+Firefox
+WinSCP
+
+
+AD/DNS/IIS roles
+
+DNS Records
+
+Users:
+Screenshotting users
+Admins: mssql, proftpd, 
+
+
+
+Telnet server installed but disabled
+
+
+
+binddn in local admins group. Windows 8 was trying to use it to login
+proftpd user
+
+
+C:\users\administrator\documents\passlist.txt
+
+Username Passowrd First/Middle/Last
+
+Remote desktop non NLA enabled
+
+
+______________________________________________________________________________________________
+
+Windows 8.1
+
+PRTG Enterprise Console/ PRTG Network monitor
+PRTG Server 
+SSHD.exe on 23570
+cygrunsrv
+
+Users:
+PRTGCoreService, egooks, Administrator, Guest
+
+Has SMB1.0
+
+Everyone but Guest is in local admin group
+
