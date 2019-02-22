@@ -9,6 +9,12 @@ Ensure that interzone allow is added in order for traffic to flow by default thr
 This is where you can activate most of Palo's DPI and url filtering.
 ```admin@palo-vm-50# set rulebase security rules WEB profile-setting profiles```
 
+## Monitor Logs
+
+```
+> show log traffic rule equal ______
+```
+
 ## Security Policy
 
 **NAT NOTE**: Firewall rules use the PRENAT Destination IP, but the POSTNAT Destination Zones
