@@ -429,34 +429,34 @@ Addresses
 INTERNAL (172.20.240.0/24)
 
 set address NIX-PHANTOM ip-netmask 172.20.240.10/32
-set address NIX-PHANTOM-EXT ip-netmask 172.25.209.97/32
+set address NIX-PHANTOM-EXT ip-netmask 172.25.29.97/32
 
 set address NIX-SQL ip-netmask 172.20.240.20/32
-set address NIX-SQL-EXT ip-netmask 172.25.209.20/32
+set address NIX-SQL-EXT ip-netmask 172.25.29.20/32
 
 =========
 PUBLIC (172.20.241.0/24)
 
 set address NIX-WEB ip-netmask 172.20.241.40/32
-set address NIX-WEB-EXT ip-netmask 172.25.209.39/32
+set address NIX-WEB-EXT ip-netmask 172.25.29.39/32
 
 set address NIX-SPLUNK ip-netmask 172.20.241.20/32
-set address NIX-SPLUNK-EXT ip-netmask 172.25.209.9/32
+set address NIX-SPLUNK-EXT ip-netmask 172.25.29.9/32
 
 set address NIX-ECOM ip-netmask 172.20.241.30/32
-set address NIX-ECOM-EXT ip-netmask 172.25.209.11/32
+set address NIX-ECOM-EXT ip-netmask 172.25.29.11/32
 
 =========
 USER (172.20.242.0/24)
 
 set address WIN-AD ip-netmask 172.20.242.200/32
-set address WIN-AD-EXT ip-netmask 172.25.209.27/32
+set address WIN-AD-EXT ip-netmask 172.25.29.27/32
 
 set address WIN-WRK ip-netmask 172.20.242.100/32
 set address WIN-WRK-EXT ip-netmask DYNAMIC? (Probs not scored).. Don't Worry
 
 set address NIX-DNS ip-netmask 172.20.242.10/32
-set address NIX-DNS-EXT ip-netmask 172.25.209.23/32
+set address NIX-DNS-EXT ip-netmask 172.25.29.23/32
 
 ================================================================================
 
