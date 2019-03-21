@@ -25,6 +25,3 @@
   - Allows for local tripwire:))
     - **NO EXECUTION**
       - Correction-- sshfs disables this by default
-      
-
-**
