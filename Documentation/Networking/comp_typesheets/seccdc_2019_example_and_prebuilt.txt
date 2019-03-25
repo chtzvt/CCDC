@@ -1,0 +1,97 @@
+############################################################
+#    Southeast Collegiate Cyber Defense Competition 2019   #
+#           Palo Alto Operator: Peyton Duncan              #
+#                                                          #
+#           Goal: Win SECCDC and move on to NCCDC          #
+############################################################
+
+
+############################################################
+# IP Address Objects                                       #
+############################################################
+set address ecom ip-netmask 10.10.10T.20/32
+set address ecomlocal ip-netmask 192.168.1.20/32
+
+set address www ip-netmask 10.10.10T.5/32
+set address wwwlocal ip-netmask 192.168.1.10/32
+
+set address db ip-netmask 10.10.10T.15/32
+set address dblocal ip-netmask 192.168.1.15/32
+
+set address ad ip-netmask 10.10.10T.10/32
+set address adlocal ip-netmask 192.168.1.10/32
+
+set address manager ip-netmask 10.10.10T.99/32
+set address managerlocal ip-netmask 192.168.1.99/32
+
+set address mail ip-netmask 10.10.10T.25/32
+set address maillocal ip-netmask 192.168.1.25/32
+
+
+############################################################
+# Service Objects                                          #
+############################################################
+set service HTTP protocol tcp port 80
+
+set service DNS protocol udp port 53
+set service DNS protocol udp override no
+
+set service LDAP protocol tcp port 389
+set service LDAP protocol tcp override no
+
+set service SMTP protocol tcp port 25
+set service SMTP protocol tcp override no
+
+set service POP3 protocol tcp port 110
+set service POP3 protocol tcp override no
+
+set service SSH protocol tcp port 22
+set service SSH protocol tcp override no
+
+set service MYSQL protocol tcp port 3306
+set service MYSQL protocol tcp override no
+
+
+############################################################
+# NAT example                                              #
+############################################################
+set rulebase nat rules EXAMPLE source-translation static-ip translated-address EXTERNAL_ADDRESS
+set rulebase nat rules EXAMPLE source-translation static-ip bi-directional yes
+set rulebase nat rules EXAMPLE to EXTERNAL
+set rulebase nat rules EXAMPLE from DMZ
+set rulebase nat rules EXAMPLE destination any
+set rulebase nat rules EXAMPLE service any
+set rulebase nat rules EXAMPLE disabled no
+set rulebase nat rules EXAMPLE source INTERNAL_ADDRESS
+
+############################################################
+# Firewall Policy example                                  #
+############################################################
+set rulebase security rules EXAMPLE to DMZ
+set rulebase security rules EXAMPLE from EXTERNAL
+set rulebase security rules EXAMPLE source any
+set rulebase security rules EXAMPLE destination EXTERNAL_ADDRESS
+set rulebase security rules EXAMPLE source-user any
+set rulebase security rules EXAMPLE category any
+set rulebase security rules EXAMPLE application any
+set rulebase security rules EXAMPLE service [ pop3 smtp ssh ]
+set rulebase security rules EXAMPLE hip-profiles any
+set rulebase security rules EXAMPLE action allow
+
+
+############################################################
+# Management Configuration                                 #
+############################################################
+mgt-config {
+  users {
+    admin {
+      phash HASH;
+      permissions {
+        role-based {
+          superuser yes;
+        }
+      }
+      public-key BLAH
+    }
+  }
+}
