@@ -112,7 +112,15 @@ Follow rest of steps from DigitalOcean article _(google keywords: "google authen
   
   
   * Write down backup tokens on paper (Alternatively, these can be extracted from `~/.google_authenticator`)
+```
 
+------------------------      ------------------------      ------------------------
+
+------------------------      ------------------------      ------------------------
+
+------------------------      ------------------------      ------------------------
+
+```
 After you have completed configuring Google Authenticator, verify and test the installation using `ssh toads@localhost`.
 
 
