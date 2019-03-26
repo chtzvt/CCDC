@@ -64,6 +64,23 @@ set rulebase nat rules EXAMPLE service any
 set rulebase nat rules EXAMPLE disabled no
 set rulebase nat rules EXAMPLE source INTERNAL_ADDRESS
 
+
+############################################################
+# Client NAT example  (Source NAT)                         #
+############################################################
+"Client NAT" {
+  to EXTERNAL;
+  from LAN;
+  source 192.168.40.0/24; # INTERNAL NETMASK
+  destination any;
+  service any;
+  source-translation {
+    dynamic-ip-and-port {
+      translated-address gw.1.halcorp.biz; # EXTERNAL IP
+    }
+  }
+}
+
 ############################################################
 # Firewall Policy example                                  #
 ############################################################
