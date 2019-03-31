@@ -287,7 +287,7 @@ $ sed -i -e ':a' -e 'N' -e '$!ba' -e 's|<br />\n||g' *.wiki
 ```
 
 Note: Try this new command for direct conversion: 
-`pandoc -s -I -f docx -t mediawiki “$i” -o “$i”.mediawiki`
+`pandoc -s -f docx -t mediawiki “$i” -o “$i”.mediawiki`
 
 Also look into [this tool](http://www.donationcoder.com/software/mouser/obsolete-stuff/mwimporter).
  
