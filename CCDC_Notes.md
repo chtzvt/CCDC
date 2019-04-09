@@ -49,9 +49,10 @@ $ iptables -A OUTPUT -m <uid> -p <tcp/udp> --dport <port> -j ACCEPT
 ## Antivirus
 
 ```
-$ # Install clamav package (yum/apt/zypper/pkg)
+$ # Install clamtk package (yum/apt/zypper/pkg)
+$ vi /etc/freshclam.conf   # Remove example line near top
 $ freshclam
-$ clamscan -ril virus.log /home
+$ clamscan -ril scan.log /bin /etc /home /root /usr /var /sbin
 ```
 
 ##### Scan another computer:
@@ -183,6 +184,140 @@ $ cut -d',' -f4 users.csv | while read user; do
 > done
 ```
 
+## Other Injects
+
+### Network Scan (Inventory/Vulnerabilities)
+```
+$ nmap -n -sV {RANGE} -oX /nmap_scan.xml
+```
+
+### Disk Image Analysis Inject
+```
+$ screen ssh user@remote "dd if=/dev/sda | gzip -9 -" | dd of=image.gz
+```
+
+### SSH BruteForce Protection
+
+```
+$ /usr/sbin/iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+$ /usr/sbin/iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent  --update --seconds 60 --hitcount 4 -j DROP
+```
+OR
+`apt install fail2ban` / `yum install fail2ban`
+
+### Convert Static Site to use Wordpress
+
+Install WordPress on server
+
+Move static page.html files to /web-root/wp-content/your-theme/page.php
+
+At the top of each file, insert:
+
+`<?php /* Template Name: YourPageName */ ?>`
+
+In the WordPress admin page, under Pages > All Pages, add a new page, and then under the Page Attributes section, change Template from "Default Template" to "YourPageName".  Give the page an appropriate name and save.
+
+In your theme, set the front page to use a static page, and select your new page.
+
+Repeat step 4 for all the pages you need to include for the site, but for each of those (secondary pages), change the permalink to a sensible name, and update the navigation links in the primary page's source file to point to those permalink names.
+
+Move any images and other content to a folder in the WordPress root, and set the absolute path to them in your template files.
+
+### MediaWiki Convert & Upload
+
+#### Server setup
+
+Use ubuntu 18.04lts 
+
+```
+$ sudo apt install fish apache2 mariadb-server -y
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:ondrej/php -y
+$ sudo apt-get update -y
+$ sudo apt-get install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-soap php7.2-gd php7.2-xml php7.2-intl php7.2-mysql php7.2-cli php7.2-mcrypt php7.2-zip php7.2-curl -y
+
+$ sudo systemctl start apache2
+$ sudo systemctl enable apache2
+$ sudo systemctl start mariadb
+$ sudo systemctl enable mariadb
+$ sudo systemctl stop cron
+
+$ sudo mysql_secure_installation
+$ mysql -u root -p
+MariaDB [(none)]> CREATE DATABASE mediadb;
+MariaDB [(none)]> CREATE USER 'media'@'localhost' IDENTIFIED BY 'password';
+MariaDB [(none)]> GRANT ALL ON mediadb.* TO 'media'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+MariaDB [(none)]> FLUSH PRIVILEGES;
+MariaDB [(none)]> EXIT;
+
+$ wget https://releases.wikimedia.org/mediawiki/1.31/mediawiki-1.31.0.tar.gz
+$ tar -xvzf mediawiki-1.31.0.tar.gz
+$ sudo cp -r mediawiki-1.31.0 /var/www/html/mediawiki
+$ sudo chown -R www-data:www-data /var/www/html/mediawiki
+$ sudo chmod -R 777 /var/www/html/mediawiki
+ 
+$ sudo nano /etc/apache2/sites-enabled/mediawiki.conf
+```
+
+Add the following lines:
+```
+ <VirtualHost *:80>
+   DocumentRoot /var/www/html/mediawiki/
+   <Directory /var/www/html/mediawiki/>
+     Options +FollowSymLinks
+     AllowOverride All
+   </Directory>
+   ErrorLog /var/log/apache2/media-error_log
+   CustomLog /var/log/apache2/media-access_log common
+ </VirtualHost>
+ ```
+
+#### Convert Docx (Word Documents) to MediaWiki page:
+```
+$ for i in HalPolicies/*/*.docx; do pandoc -s -f docx -t mediawiki “$i” -o “$i”.mediawiki; done
+```
+
+Backup method:
+```
+$ cd /dir/with/docx/files
+$ find . -name "*.docx" -type f -exec sh -c 'pandoc "${0}" > "${0%.docx}.html"' {} \;
+$ find . -name "*.html" -type f -exec sh -c 'pandoc -s -t mediawiki --toc "${0}" -o "${0%.html}.wiki"' {} \;
+$ sed -i -e ':a' -e 'N' -e '$!ba' -e 's|<br />\n||g' *.wiki
+```
+ 
+#### Upload to MediaWiki
+```
+$ cd /path/to/web/root/maintenance
+$ php importTextFiles.php /dir/with/wiki/files/*.wiki --user <mw_username>
+```
+
+### HTTPS ON E-Commerce
+
+```
+$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt
+$ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+```
+Nginx (add to current config) 
+```
+# SSL configuration
+listen 443 ssl default_server;
+ssl_certificate /etc/ssl/certs/selfsigned.crt;
+ssl_certificate_key /etc/ssl/private/selfsigned.key;
+```
+
+### OSSEC Install
+```
+wget -U ossec https://github.com/ossec/ossec-hids/archive/3.2.0.tar.gz
+tar -zxf ossec-hids-2.8.1.tar.gz
+cd ossec-hids-*
+./install.sh
+/var/ossec/bin/ossec-control start
+/var/ossec/bin/manage_agents
+iptables -A INPUT -p UDP --dport 1514 -s your_agent_ip -j ACCEPT
+/var/ossec/bin/ossec-control restart
+/var/ossec/bin/list_agents -c
+```
+
 ## MySQL Commands
 
 ##### List Users:
@@ -257,45 +392,6 @@ Notes:
 '%' is used to match any host (e.g. 'user'@'%')
 '*' is used to match all on permissions (e.g. database.* or *.*)
 
-
-## Convert Static Site to use Wordpress
-
-Install WordPress on server
-
-Move static page.html files to /web-root/wp-content/your-theme/page.php
-
-At the top of each file, insert:
-
-`<?php /* Template Name: YourPageName */ ?>`
-
-In the WordPress admin page, under Pages > All Pages, add a new page, and then under the Page Attributes section, change Template from "Default Template" to "YourPageName".  Give the page an appropriate name and save.
-
-In your theme, set the front page to use a static page, and select your new page.
-
-Repeat step 4 for all the pages you need to include for the site, but for each of those (secondary pages), change the permalink to a sensible name, and update the navigation links in the primary page's source file to point to those permalink names.
-
-Move any images and other content to a folder in the WordPress root, and set the absolute path to them in your template files.
-
-## MediaWiki Convert & Upload
-
-##### Convert Docx (Word Documents) to MediaWiki page:
-```
-$ cd /dir/with/docx/files
-$ find . -name "*.docx" -type f -exec sh -c 'pandoc "${0}" > "${0%.docx}.html"' {} \;
-$ find . -name "*.html" -type f -exec sh -c 'pandoc -s -t mediawiki --toc "${0}" -o "${0%.html}.wiki"' {} \;
-$ sed -i -e ':a' -e 'N' -e '$!ba' -e 's|<br />\n||g' *.wiki
-```
-
-Note: Try this new command for direct conversion: 
-`pandoc -s -f docx -t mediawiki “$i” -o “$i”.mediawiki`
-
-Also look into [this tool](http://www.donationcoder.com/software/mouser/obsolete-stuff/mwimporter).
- 
-##### Upload to MediaWiki
-```
-$ cd /path/to/web/root/maintenance
-$ php importTextFiles.php /dir/with/wiki/files/*.wiki --user <mw_username>
-```
 
 ## Other Security Stuff
 
