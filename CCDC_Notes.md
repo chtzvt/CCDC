@@ -46,24 +46,7 @@ $ iptables -I OUTPUT 1 -d 123.456.789.123 -j REJECT
 $ iptables -A OUTPUT -m <uid> -p <tcp/udp> --dport <port> -j ACCEPT
 ```
 
-## Antivirus
-
-```
-$ # Install clamtk package (yum/apt/zypper/pkg)
-$ vi /etc/freshclam.conf   # Remove example line near top
-$ freshclam
-$ clamscan -ril scan.log /bin /etc /home /root /usr /var /sbin
-```
-
-##### Scan another computer:
-
-```
-$ # Install sshfs package
-$ mkdir /mnt/fs 
-$ sshfs -o allow_other root@xxx.xxx.xxx.xxx:/ /mnt/fs
-$ clamscan -ril /var/log/virus.log /mnt/fs/homeBackup Directory Securely
-```
-Note: run all commands as root
+## Backup Management
 
 ##### Setup:
 
@@ -74,7 +57,6 @@ $ chmod 600 /backup
 $ setfacl -dPm u::rw,g::---,o::--- /backup
 ```
 
-## Backup Management
 ##### Create an Archive:
 
 `$ tar -zcPf /backup/path.to.directory.tar.gz /path/to/directory`
@@ -100,9 +82,24 @@ $ cd /dir/to/unzip/in
 $ openssl enc -aes-256-cbc -d -in /backup/dirname-pwd#.tar.gz.enc | tar -zxP
 ```
 
+##### MySQL database backup:
+```
+$ mysqldump -u root -p --all-databases > /backups/db_dump
+$ tar -zcP /backup/db_dump | openssl enc -aes-256-cbc -e > /backup/db_dump-pwd#.tar.gz.enc
+$ # Verify
+$ rm /backup/db_dump
+```
+
+##### Restore from MySQL database backup:
+```
+$ openssl enc -aes-256-cbc -d -in /backup/db_dump-pwd#.tar.gz.enc | tar -zxP
+$ mysql -u root -p < db_dump
+```
+
 ##### Send to different box:
 
 `$ scp -r /backup user@ip:/backup-name`
+
 
 ## Using Docker (optional):
 Installation will vary per version, this is Ubuntu 16.04:
@@ -118,7 +115,9 @@ $ cat > /docker <<EOF
 > EOF
 ```
 
-## Adding Users
+## Injects (Business tasks)
+
+### Adding Users
 
 ##### Create file add_users:
 
@@ -184,8 +183,6 @@ $ cut -d',' -f4 users.csv | while read user; do
 > done
 ```
 
-## Other Injects
-
 ### Network Scan (Inventory/Vulnerabilities)
 ```
 $ nmap -n -sV {RANGE} -oX /nmap_scan.xml
@@ -204,6 +201,25 @@ $ /usr/sbin/iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m 
 ```
 OR
 `apt install fail2ban` / `yum install fail2ban`
+
+### Antivirus
+
+```
+$ # Install clamtk package (yum/apt/zypper/pkg)
+$ vi /etc/freshclam.conf   # Remove example line near top
+$ freshclam
+$ clamscan -ril scan.log /bin /etc /home /root /usr /var /sbin
+```
+
+##### Scan another computer:
+
+```
+$ # Install sshfs package
+$ mkdir /mnt/fs 
+$ sshfs -o allow_other root@xxx.xxx.xxx.xxx:/ /mnt/fs
+$ clamscan -ril /var/log/virus.log /mnt/fs/homeBackup Directory Securely
+```
+Note: run all commands as root
 
 ### Convert Static Site to use Wordpress
 
@@ -391,6 +407,30 @@ $ chmod +x /bin/rbash
 Notes:
 '%' is used to match any host (e.g. 'user'@'%')
 '*' is used to match all on permissions (e.g. database.* or *.*)
+
+## Bind Configuration
+
+##### Disable Zone Transfers (`/etc/named.conf`):
+```
+allow-transfer {"none";};
+```
+
+##### Turn on logging (`/etc/named.conf`):
+```
+logging {
+    channel queries_file {
+        file "/var/log/named/queries.log" versions 3 size 5m;
+        severity dynamic;
+        print-time yes;
+    };
+    category queries { queries_file; };
+};
+```
+
+##### Check configuration
+```
+named-checkconf /etc/named.conf
+```
 
 
 ## Other Security Stuff
