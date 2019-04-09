@@ -51,9 +51,7 @@ Add users to exception list:
 6. Click Exception Users and click the plus icon to add exception users.
 
 
-Note: Still Needs to be Tested against 6.0 and 6.5
-
-##### Get VMIDs:
+##### Get VMID's:
 ```
 $ vim-cmd vmsvc/getallvms
 ```
@@ -73,11 +71,29 @@ $ vim-cmd vmsvc/power.shutdown VMID
 vim-cmd vmsvc/power.off VMID
 ```
 
-##### SnapShot VM:
+
+##### List Snapshots for a VM:
 ```
-vim-cmd vmsvc/snapshot.create 23 "Snap_Name_Time" "Snap_Description_Time" 0 0
+vim-cmd vmsvc/snapshot.get VMID
 ```
 
+##### SnapShot VM without memory:
+```
+vim-cmd vmsvc/snapshot.create VMID "Snap_Name" "Snap_Description" 0 0
+```
+
+##### SnapShot VM with memory (recommended):
+```
+vim-cmd vmsvc/snapshot.create VMID "Snap_Name_Time" "Snap_Description_Time" 1 1
+```
+
+##### Restore VM Snapshot:
+```
+vim-cmd vmsvc/snapshot.revert VMID 1 0
+
+First Number: SnapshotID
+Second Number: powerOff state (please always do 0.)
+```
 ##### Kick People out of VSphere:
 ```
 /etc/init.d/hostd restart
