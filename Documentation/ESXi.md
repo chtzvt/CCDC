@@ -1,10 +1,9 @@
 # ESXi Security Guide
-## ESXi 5.x:
 
 ### Recoverable lockdown mode
 
 ##### Setup:
-* Change VPX user's shell to something usable
+* Change VPX user's shell to '/bin/sh'
 * Drop SSH keys on VPX user
 
 ```
@@ -40,15 +39,12 @@ $ sed -i -e ‘3iauth required pam_google_authenticator.so\’ /etc/pam.d/sshd
 $ sed -i -e ‘3iauth required pam_google_authenticator.so\’ /etc/pam.d/login
 ```
 
-## ESXi 6.x:
-
-Add users to exception list:
-1. Procedure
-2. Browse to the host in the vSphere Web Client inventory.
-3. Click Configure.
-4. Under System, select Security Profile.
-5. In the Lockdown Mode panel, click Edit.
-6. Click Exception Users and click the plus icon to add exception users.
+##### Remove users from exception list:
+1. Browse to the host in the vSphere Web Client inventory.
+2. Click Configure.
+3. Under System, select Security Profile.
+4. In the Lockdown Mode panel, click Edit.
+5. Click Exception Users and remove users from the list.
 
 
 ##### Get VMID's:
