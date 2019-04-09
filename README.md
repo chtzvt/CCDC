@@ -34,6 +34,7 @@ This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYON
   * Output only if different, checks perms and hashes
 * Debian verify all packages: `debsums`
   * Need to install
+* Kill all PTYs that are not yours: `who | awk '!/root/{ cmd="/sbin/pkill -KILL -u " $1; system(cmd)}'`
 
 ### Needed scripts
 * Panolpy-style set root ssh PubKey and kick everyone else out script
