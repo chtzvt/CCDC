@@ -1,5 +1,26 @@
 # Scripts
 
+### Quick Commands
+
+* RHEL verify all packages: `rpm -Va`
+  * Output only if different, checks perms and hashes
+* Debian verify all packages: `debsums`
+  * Need to install
+* Kill all PTYs that are not yours: `` kill -9 `pgrep '^(bash|sh)' | grep -v $$` ``
+* Parallel SSH: `pss -h <hosts_file> -l <default_username> <command>`
+
+### SSH Initial Spray
+
+```
+OP=<old_password>
+NP=<new_password>
+for i in {1..255}; do sshpass -p '$OP' ssh -o StrictHostKeyChecking=no <user>@10.X.X.$i "echo -e '$OP\n$NP\n$NP' | passwd; iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT; iptables -I INPUT 2 -j DROP" &; done
+```
+Notes:
+* Change `<user>` to be `root` and any admin user names provided
+* Change `10.X.X` to be actual subnet
+* Change `1..255` to actually represent range of IP addresses in our environment
+
 ### Copy Keys
 
 ```
@@ -19,13 +40,6 @@ do
 done
 ```
 
-
-### Kill Other SSH Sessions
-
-```
-kill -9 `pgrep '^(bash|sh)' | grep -v $$`
-```
-
 ### Mount SSHFS
 
 ```
@@ -41,6 +55,14 @@ for s in $(cat /etc/servers); do
   mkdir /servers/$s
   sshfs -o allow_other,ServerAliveInterval=20,reconnect root@$s:/ /servers/$s
 done
+```
+
+### Convert ARP entries to static
+
+```
+$ arp -an | awk -F' ' '{print $2 $4}' | cut -d'(' -f2 | while IFS=')' read ip mac
+> do arp -s $ip $mac
+> done
 ```
 
 ### Procedurally Generate Tripwire Configuration
