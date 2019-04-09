@@ -3,11 +3,32 @@
 ## A note on the enclosed information
 This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYONE* outside of the club. No Normies allowed (Ree).
 
-## Nationals 2018
+## Nationals 2019 Linux
 
-### Linux
+### Starting Off
 
-#### Needed scripts
+4 admins:
+* 1 Secure local ESXi
+* 1 Secure cloud ESXi
+* 1 Spray SSH change creds script (root & admin users)
+  * Manually change passwords on failed boxes
+* 1 Login to web apps and change admin passwords
+
+### Strategy
+
+* Jumphost - super secure
+* SSH remote mount everything - use for:
+  * Backups
+  * Changing web app passwords
+  * Malware scans
+
+### Useful commands
+* RHEL verify all packages: `rpm -Va`
+  * Output only if different, checks perms and hashes
+* Debian verify all packages: `debsums`
+  * Need to install
+
+### Needed scripts
 * Panolpy-style set root ssh PubKey and kick everyone else out script
 * Ansible Tasks:
   * Backup
@@ -29,16 +50,3 @@ This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYON
     * Change all user passwords
     * Change all root passwords
   * Other ??
-
-### Windows
-
-### Needed Items
-* Add existing scripts, including but not limited to:
-  * Bulk import users
-  * Bulk change passwords
-  * Registry modifications
-  * etc.
-
-* Documentation on Nationals/rare services like Hmail, openssh, etc.
-
-* 30 Minute strategy
