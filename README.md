@@ -35,6 +35,7 @@ This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYON
 * Debian verify all packages: `debsums`
   * Need to install
 * Kill all PTYs that are not yours: `` kill -9 `pgrep '^(bash|sh)' | grep -v $$` ``
+* Parallel SSH: `pss -h <hosts_file> -l <default_username> <command>`
 
 ### Needed scripts
 * Panolpy-style set root ssh PubKey and kick everyone else out script
