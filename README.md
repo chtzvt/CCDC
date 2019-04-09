@@ -10,9 +10,13 @@ This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYON
 4 admins:
 * 1 Secure local ESXi
 * 1 Secure cloud ESXi
-* 1 Spray SSH change creds script (root & admin users)
+* 1 Spray SSH script (root & admin users)
+  * Change password
+  * IPTables drop all but SSH
   * Manually change passwords on failed boxes
-* 1 Login to web apps and change admin passwords
+* 1 Login to web apps
+  * Move admin directory OR
+  * change web admin password
 
 ### Strategy
 
@@ -21,6 +25,9 @@ This information is **HIGHLY-CONFIDENTIAL**. Period. Do not share it with *ANYON
   * Backups
   * Changing web app passwords
   * Malware scans
+* Reliance on tools
+  * OSSEC
+  * PSSH
 
 ### Useful commands
 * RHEL verify all packages: `rpm -Va`
