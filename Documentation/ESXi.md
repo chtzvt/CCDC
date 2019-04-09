@@ -78,3 +78,7 @@ vim-cmd vmsvc/power.off VMID
 vim-cmd vmsvc/snapshot.create 23 "Snap_Name_Time" "Snap_Description_Time" 0 0
 ```
 
+##### Kick People out of VSphere:
+```
+/etc/init.d/hostd restart
+```
