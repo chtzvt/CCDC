@@ -307,6 +307,16 @@ $ cd /path/to/web/root/maintenance
 $ php importTextFiles.php /dir/with/wiki/files/*.wiki --user <mw_username>
 ```
 
+#### Mass Delete Pages:
+```
+$ mysql -u root -p
+> use <media_wiki_db_name>
+> select page_title from page into outfile '/root/pages.csv';
+$ # Delete main page from pages.csv file
+$ cd /path/to/web/root/maintenance
+$ php deleteBatch.php /root/pages.csv
+```
+
 ### HTTPS ON E-Commerce
 
 ```
@@ -433,17 +443,7 @@ named-checkconf /etc/named.conf
 ```
 
 
-## Other Security Stuff
-
-##### Mass Delete Pages:
-```
-$ mysql -u root -p
-> use <media_wiki_db_name>
-> select page_title from page into outfile '/root/pages.csv';
-$ # Delete main page from pages.csv file
-$ cd /path/to/web/root/maintenance
-$ php deleteBatch.php /root/pages.csv
-```
+## Web App Security
 
 ##### Search for PHP Backdoors
 
@@ -453,6 +453,24 @@ $ grep -iR 'r57' /path/to/web/root
 $ find /path/to/web/root -name \*.php -type f -print0 | xargs -o grep c99
 $ grep -RPn "(passthru|shell_exec|system|base64_decode|fopen|fclose|eval)" /path
 ```
+
+##### Secure PHP
+Edit `php.ini`:
+
+```
+upload_tmp_dir = "/var/php_tmp"
+session.save_path = "/var/lib/php/sessions"
+open_basedir = "/var/www:/var/lib/php/sessions:/var/php_tmp"
+file_uploads = Off
+allow_url_fopen = Off
+disable_functions = "php_uname, getmyuid, getmypid, passthru, leak, listen, diskfreespace, tmpfile, link, ignore_user_abord, shell_exec, dl, set_time_limit, exec, system, highlight_file, source, show_source, fpaththru, virtual, posix_ctermid, posix_getcwd, posix_getegid, posix_geteuid, posix_getgid, posix_getgrgid, posix_getgrnam, posix_getgroups, posix_getlogin, posix_getpgid, posix_getpgrp, posix_getpid, posix, _getppid, posix_getpwnam, posix_getpwuid, posix_getrlimit, posix_getsid, posix_getuid, posix_isatty, posix_kill, posix_mkfifo, posix_setegid, posix_seteuid, posix_setgid, posix_setpgid, posix_setsid, posix_setuid, posix_times, posix_ttyname, posix_uname, proc_open, proc_close, proc_get_status, proc_nice, proc_terminate, phpinfo"
+expose_php = Off
+error_reporting = E_ALL
+display_error = Off
+display_startup_errors = Off
+```
+
+## Process Limits
 
 ##### Restrict Processes in Limits.conf
 Edit /etc/limits.conf (or /etc/security/limits.conf)
@@ -475,23 +493,25 @@ $ ulimit -Hn  # number of files
 $ ulimit -Hu  # number of processes
 ```
 
-##### Convert All ARP Entries to Static
+## Network Security
+
+### Convert All ARP Entries to Static
 ```
 $ arp -an | awk -F' ' '{print $2 $4}' | cut -d'(' -f2 | while IFS=')' read ip mac
 > do arp -s $ip $mac
 > done
 ```
 
-##### Disable IPv6
+### Disable IPv6
 
-RHEL:
+##### RHEL:
 
 ```
 $ sysctl -w net.ipv6.conf.all.disable_ipv6=1
 $ sysctl -w net.ipv6.conf.default.disable_ipv6=1
 ```
 
-Debian-based linux:
+##### Debian-based linux:
 
 ```
 $ cat >> /etc/sysctl.conf <<EOF
@@ -502,8 +522,9 @@ $ cat >> /etc/sysctl.conf <<EOF
 $ sysctl -p
 ```
 
-##### Checking Files
-Find all files and directories with unsafe permissions (including setgid bits):
+## Checking Files
+
+##### Find all files and directories with unsafe permissions (including setgid bits):
 
 `$ find / \( -path /proc -o -path /sys -o -path /dev -o -path */rc.d \) -prune -o -perm -755 ! -perm 755`
 
@@ -511,7 +532,7 @@ Find all files and directories with unsafe permissions (including setgid bits):
 
 `$ ls -l /etc/passwd /etc/shadow /etc/group ~/.ssh /etc/ssh/sshd_config`
 
-Audit all files  (and check) - without Git:
+##### Audit all files (and check) - without Git:
 
 ```
 $ ls -Rl -Iproc / > /etc/files.mark
@@ -539,12 +560,12 @@ $ git diff HEAD HEAD^ files.mark  # Compares current with last
 
 `$ find / -newer /etc/issue`
 
-Find files that were modified recently:
+##### Find files that were modified recently:
 
 `$ find / -mtime -5`
 
 
-##### Install and Run Lynis
+## Install and Run Lynis
 ```
 $ git clone https://github.com/CISOfy/lynis
 $ cd lynis
