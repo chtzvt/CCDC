@@ -7,7 +7,18 @@
 * Debian verify all packages: `debsums`
   * Need to install
 * Kill all PTYs that are not yours: `` kill -9 `pgrep '^(bash|sh)' | grep -v $$` ``
-* Parallel SSH: `pss -h <hosts_file> -l <default_username> <command>`
+* Get established connections: `netstat -tpn 2>/dev/null || netstat -an | grep ESTABLISHED`
+* Get listening ports: `netstat -tln 2>/dev/null || netstat -an | grep LISTEN`
+* List kernel modules: `lsmod || modinfo`
+
+### Control
+* Run command on one host: `ssh <hostname> -l <username> <username> <command>`
+  * Username only needed if not `root`
+* Run command on all hosts: `pssh -h <hosts_file> -l <default_username> <command>`
+  * Username only needed if not `root`
+* Run command on one host (ansible): `ansible <hostname> -m raw -a "<command>"`
+* Run command on all hosts (ansible): `ansible all -m raw -a "<command>"`
+* Run ansible playbook: `ansible-playbook name_of_playbook.yml`
 
 ### SSH Initial Spray
 
