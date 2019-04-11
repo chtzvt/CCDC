@@ -18,20 +18,19 @@ Before you do anything remember to use your head and assess the situation. Don't
 - [ ] Check listening ports
 - [ ] Remove unwanted software and services
 
-
 ## Final 10 Minutes (30 minute) 
 - [ ] Check for Backdoors: Run AV, stickey keys, backdoors in services, Autoruns
-- [ ] Setup ip blocking software
+- [ ] Setup IP blocking software
 - [ ] Patch Windows and Critical service
 - [ ] UAC, disable CMD & Powershell (if desired)
-- [ ] Sysmon
+- [ ] Sysmon, enable logging
 - [ ] Configure service to be more secure
 - [ ] Verify service functionality
 
 ## Additional software:
-- [ ] rdguard - Used for bruteforce protection (IIS, Exchange, MySQL, etc..)
+- [ ] Rdpguard - Used for bruteforce protection (IIS, Exchange, MySQL, etc..)
 - [ ] rohos
 - [ ] Malwarebytes
-- [ ] sysinternals
+- [ ] Sysinternals suite
 - [ ] EMET (Enhanced Mitigation Experience Toolkit)
-- [ ] Donwload + Upgrade WMF (Powershell) to version 5.0+
+- [ ] Download + Upgrade WMF (Powershell) to version 5.0+
