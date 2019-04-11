@@ -38,6 +38,8 @@
 * Bad password databases: `cat nsswitch.conf`
 * PAM backdoor: `cat /etc/pam.d/*` (esp. `common-auth`)
 * Sudoers file: `visudo` / `cat /etc/sudoers.d/*`
+* Services: `systemctl` / `service --status-all`
+* On boot: `/etc/rc.local`
 
 ## Really Good Ideas (from 2018) (need to do something with these - test and document, discard, etc)
 
