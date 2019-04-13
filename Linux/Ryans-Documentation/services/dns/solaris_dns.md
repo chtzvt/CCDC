@@ -160,7 +160,7 @@ To refresh the ipfilter rules:
 ```
 
 ##### Firewall Rules Configurations
-These are all settings stored in the `/etc/ipf/ipf,conf` file.
+These are all settings stored in the `/etc/ipf/ipf.conf` file.
 
 If you want to allow all traffic through on the `net0` interface:
 ```
