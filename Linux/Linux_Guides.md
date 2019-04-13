@@ -565,6 +565,19 @@ $ git diff HEAD HEAD^ files.mark  # Compares current with last
 `$ find / -mtime -5`
 
 
+## Install and Run Wazuh
+### Install Wazuh-Manager
+
+```
+$ wget https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-manager/wazuh-manager_3.8.2-1_amd64.deb
+$ dpkg -i wazuh-manager_3.8.2-1_amd64.deb  
+Make sure the service is started(it starts by default)
+$ cd /var/ossec/bin
+$ ./ossec-control start
+```
+### Install Wazuh-Agent
+
+
 ## Install and Run Lynis
 ```
 $ git clone https://github.com/CISOfy/lynis
