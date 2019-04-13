@@ -46,6 +46,57 @@ $ iptables -I OUTPUT 1 -d 123.456.789.123 -j REJECT
 $ iptables -A OUTPUT -m <uid> -p <tcp/udp> --dport <port> -j ACCEPT
 ```
 
+## Solaris 11 Firewall:
+### Firewall Service Management
+
+#### First check to see if the firewall service is running:
+```
+$	svcs -a | grep pfil
+```
+
+#### To enable/start the firewall service:
+```
+$	svcadm enable svc:/network/ipfilter:default
+```
+
+#### View all current firewall rules:
+```
+$	ipfstat -io
+```
+
+#### To add/remove firewall rules edit the `ipf.conf` file:
+```
+$	vim /etc/ipf/ipf.conf
+```
+
+#### To refresh the ipfilter rules:
+```
+$	ipf -Fa -f /etc/ipf/ipf.conf
+```
+
+### Firewall Rules Configurations
+These are all settings stored in the `/etc/ipf/ipf.conf` file.
+
+If you want to allow all traffic through on the `net0` interface:
+```
+pass in on net0 all
+pass out on net0 all
+```
+#### Block short packets which are packets fragmented too short to be real.
+```
+block in log quick all with short
+```
+
+#### This will by default block all incoming network traffic:
+```
+block in log on net0 from any to any head 100
+```
+#### This will allow in 22/tcp:
+```
+pass in quick on net0 proto tcp from any \
+to net0/32 port = 22 flag S keep state group 100
+```
+
 ## Backup Management
 
 ##### Setup:
