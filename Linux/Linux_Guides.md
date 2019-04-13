@@ -46,6 +46,29 @@ $ iptables -I OUTPUT 1 -d 123.456.789.123 -j REJECT
 $ iptables -A OUTPUT -m <uid> -p <tcp/udp> --dport <port> -j ACCEPT
 ```
 
+## Firewall with PfCTL:
+
+### Firewall Service Management:
+
+#### Add the following to `/etc/rc.conf`:
+
+```
+pf_enable="YES"
+pf_rules="/usr/local/etc/pf.conf"
+pflog_enable="YES"
+pflog_logfile="/var/log/pflog"
+```
+
+### Firewall Rules Management:
+
+#### Firewall rules in `/usr/local/etc/pfc.conf`:
+
+```
+pass in quick on em0 inet proto tcp from $your_ip to em0 port 22 keep state
+pass in quick on em0 inet proto tcp from $jumphost_ip to em0 port 22 keep state
+block out all
+```
+
 ## Solaris 11 Firewall:
 ### Firewall Service Management
 
