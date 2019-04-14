@@ -1,5 +1,24 @@
 # ESXi Security Guide
 
+
+## Configure ReadOnly VSphere Web Access:
+
+1. Browse to the manage option in the vSphere Web Client.
+2. Under Security and Users, select Users.
+3. Click "Add User" and create a user with the name "readonly" and a password from the password sheet.
+4. Under Security and Users, select Roles.
+5. Select "Add a Role".
+6. Enter the roll name "CCDC Role".
+7. Click on the "Virtual Machine" permission.
+8. Click on the "Interact" permission.
+9. Grant permission to "CreateScreenshot" and "ConsoleInteract".
+10. Go to the Host option in the vSphere Web Client.
+11. Click the "Actions" drop down.
+12. Select the "Permissions" option.
+13. Click "Add User" and select the user "readonly" and select the "ccdc role".
+14. Click the "Add User" option at the bottom.
+
+
 ### Recoverable lockdown mode
 
 ##### Setup:
