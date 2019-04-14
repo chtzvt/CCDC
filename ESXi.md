@@ -96,13 +96,16 @@ $ sed -i -e ‘3iauth required pam_google_authenticator.so\’ /etc/pam.d/login
 ```
 $ vim-cmd vmsvc/getallvms
 ```
-
-##### SnapShot VM without memory:
+##### SnapShot all VMs:
 ```
-vim-cmd vmsvc/snapshot.create VMID "Snap_Name" "Snap_Description" 0 0
+$ for vm in $(vim-cmd vmsvc/getallvms | awk '{print $1}');do vim-cmd vmsvc/snapshot.create $vm "snapshot" snapshot; done 
+```
+##### SnapShot VM without memory(recommended for 5.5):
+```
+vim-cmd vmsvc/snapshot.create VMID "Snap_Name" "Snap_Description"
 ```
 
-##### SnapShot VM with memory (recommended):
+##### SnapShot VM with memory:
 ```
 vim-cmd vmsvc/snapshot.create VMID "Snap_Name_Time" "Snap_Description_Time" 1 1
 ```
