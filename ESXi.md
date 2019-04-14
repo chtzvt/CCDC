@@ -42,7 +42,7 @@ $ vi /etc/passwd
 * Change SSH KeyPath in /etc/ssh/sshd_config
 ```
 $ vi /etc/ssh/sshd_config
-Look for AuthorizedKeysFile and change path to /var/keys-%u/authorized_keys
+Look for AuthorizedKeysFile and change path to /etc/ssh/new-keys-%u/authorized_keys
 ```
 
 * Change SSH Port in /etc/ssh/sshd_config
@@ -53,8 +53,8 @@ Look for Port and change port to 9000
 
 * Drop SSH keys on VPX user
 ```
-$ mkdir /var/keys-vpxuser  # in the location seen above
-$ vi /var/keys-vpxuser/authorized_keys  # put keys in here
+$ mkdir /etc/ssh/new-keys-vpxuser  # in the location seen above
+$ vi /etc/ssh/new-keys-vpxuser/authorized_keys  # put keys in here
 ```
 * verify it works by logging in with ssh (From host that has the ssh keypair)
 ```
@@ -64,6 +64,11 @@ $ ssh vpxuser@ESX_IP
 ##### To put in lockdown mode:
 ```
 $ vim-cmd -U dcui vimsvc/auth/lockdown_mode_enter
+```
+
+##### To kill all ssh sessions:
+```
+$ pkill sshd
 ```
 
 ##### To exit:
