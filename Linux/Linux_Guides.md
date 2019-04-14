@@ -419,6 +419,12 @@ iptables -A INPUT -p UDP --dport 1514 -s your_agent_ip -j ACCEPT
 ```
 
 ## MySQL Commands
+##### Enable Query logs 
+```
+>SET GLOBAL general_log = 'ON';
+>SET GLOBAL slow_query_log = 'ON';
+```
+  check mysqlroot such as /var/db/mysql
 
 ##### List Users:
 
