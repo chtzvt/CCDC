@@ -1,7 +1,18 @@
 # ESXi Security Guide
 
+## Configure ReadOnly Vsphere Client Access(5.5 and lower):
+1. Go to the view option in the vSphere Client and select "Administration" and then select "Roles".
+2. Select "Add a Role" and enter the roll name "CCDC Role".
+3. Click on the "Virtual Machine" permission.
+4. Click on the "Interactaction" permission.
+5. Grant permission to "Create Screenshot", "ConsoleInteract", and "Power On".
+6. Switch views to the inventory tab. Under the Local Users & Groups tab, right click to add a new user.
+7. Create a user with the name "readonly" and a password from the password sheet.
+4. Switch to the Permissions Tab
+13. Right click to Add Permission. Select the user "readonly" and select the "ccdc role".
+14. Click the "OK" button at the bottom.
 
-## Configure ReadOnly VSphere Web Access:
+## Configure ReadOnly VSphere Web Access (6.0+):
 
 1. Browse to the manage option in the vSphere Web Client.
 2. Under Security and Users, select Users.
