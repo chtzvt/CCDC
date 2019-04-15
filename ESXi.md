@@ -139,30 +139,30 @@ $ for vm in $(vim-cmd vmsvc/getallvms | awk '{print $1}');do vim-cmd vmsvc/snaps
 ```
 ##### SnapShot VM without memory(recommended for 5.5):
 ```
-vim-cmd vmsvc/snapshot.create VMID "Snap_Name" "Snap_Description"
+$ vim-cmd vmsvc/snapshot.create VMID "Snap_Name" "Snap_Description"
 ```
 
 ##### SnapShot VM with memory:
 ```
-vim-cmd vmsvc/snapshot.create VMID "Snap_Name_Time" "Snap_Description_Time" 1 1
+$ vim-cmd vmsvc/snapshot.create VMID "Snap_Name_Time" "Snap_Description_Time" 1 1
 ```
 
 ##### List Snapshots for a VM:
 ```
-vim-cmd vmsvc/snapshot.get VMID
+$ vim-cmd vmsvc/snapshot.get VMID
 ```
 
 
 ##### Restore VM Snapshot:
 ```
-vim-cmd vmsvc/snapshot.revert VMID 1 0
+$ vim-cmd vmsvc/snapshot.revert VMID 1 0
 
 First Number: SnapshotID
 Second Number: powerOff state (please always do 0.)
 ```
 ##### Kick People out of VSphere:
 ```
-/etc/init.d/hostd restart
+$ /etc/init.d/hostd restart
 ```
 
 ##### Get the current state of a virtual machine by running this command:
@@ -177,11 +177,11 @@ $ vim-cmd vmsvc/power.shutdown VMID
 
 ##### PowerOff VM:
 ```
-vim-cmd vmsvc/power.off VMID
+$ vim-cmd vmsvc/power.off VMID
 ```
 
 ##### List Unsigned VMkernel modules in ESXi:
 ```
-esxcli software vib list
+$ esxcli software vib list
 ```
 
