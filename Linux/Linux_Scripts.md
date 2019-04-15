@@ -77,6 +77,31 @@ $ arp -an | awk -F' ' '{print $2 $4}' | cut -d'(' -f2 | while IFS=')' read ip ma
 > done
 ```
 
+### Honeypot (run command on connection)
+
+```
+#!/usr/bin/env python
+import os, socket, select
+
+ports = [12345, 12346]
+socks = []
+
+for p in ports:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(("0.0.0.0", p))
+    s.listen(5)
+    socks.append(s)
+    
+while True:
+    r, w, err = select.select(socks, [], [])
+    for s in r:
+        c, addr = s.accept()
+        c.shutdown(socket.SHUT_RDWR)
+        c.close()
+        os.system('wall "suspicious connection from IP: " ' + addr[0])
+```
+
 ### Procedurally Generate Tripwire Configuration
 
 ```
