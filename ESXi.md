@@ -178,4 +178,8 @@ $ vim-cmd vmsvc/power.shutdown VMID
 vim-cmd vmsvc/power.off VMID
 ```
 
+##### List Unsigned VMkernel modules in ESXi:
+```
+esxcli software vib list
+```
 
