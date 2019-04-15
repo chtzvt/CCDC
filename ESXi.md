@@ -30,6 +30,25 @@
 13. Click "Add User" and select the user "readonly" and select the "ccdc role".
 14. Click the "Add User" option at the bottom.
 
+### ESXi Firewall Strategy:
+* Set the firewall to only allow one IP to ssh in
+```
+$ esxcli network firewall set -d t #Pass Through all traffic(insecure)
+$ esxcli network firewall ruleset allowedip list --ruleset-id sshServer #Delete other IPs in here
+$ esxcli network firewall ruleset set --ruleset-id sshServer --allowed-all false 
+$ esxcli network firewall ruleset allowedip add --ruleset-id sshServer --ip-address $martin_ip
+$ esxcli network firewall set -d f
+```
+
+*Listing the ruleset names:
+```
+$ esxcli network firewall ruleset list
+```
+
+* Remove an IP from a ruleset:
+```
+$ esxcli network firewall ruleset allowedip remove --ruleset-id sshServer --ip-address $ip_to_remove
+```
 
 ### Recoverable lockdown mode
 
@@ -71,7 +90,7 @@ $ vim-cmd -U dcui vimsvc/auth/lockdown_mode_enter
 $ pkill sshd
 ```
 
-##### To exit:
+##### To exit lockdoown mode:
 ```
 $ vim-cmd -U dcui vimsvc/auth/lockdown_mode_exit
 ```
