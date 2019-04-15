@@ -1,5 +1,52 @@
 # CCDC Linux Guides
 
+## NFT firewall
+A Linux kernel >= 3.13 is required.
+
+### Install NFT Firewall Tools
+
+#### For debian based 
+
+```
+apt install nftables
+```
+#### For RHEL
+
+```
+$ yum install nftables
+```
+
+#### For arch:
+```
+$ pacman -S nftables 
+```
+
+#### For gentoo:
+```
+$ emerge --ask net-firewall/nftables
+```
+
+#### For opensuse:
+```
+$ zypper install nftables
+
+```
+### Use iptables-nft
+
+#### Implement a log rule for SSH inbound:
+
+```
+$ iptables-nft -A INPUT -p tcp --dport 22 -j LOG
+
+```
+#### Save your firewall rules:
+
+```
+iptables-nft-save
+```
+
+
+
 ## IP Tables Commands
 
 ##### Allow Established Connections:
@@ -667,7 +714,7 @@ $ ./lynis audit system
 
 ## Extra Links
 
-#####Kernel Hardening
+##### Kernel Hardening
 
 - URL: https://www.cyberciti.biz/faq/linux-kernel-etcsysctl-conf-security-hardening/
 - Google: Linux Kernel Security Hardening sysctl
@@ -675,3 +722,4 @@ $ ./lynis audit system
 ##### PHP Security
 
 - https://www.cyberciti.biz/tips/php-security-best-practices-tutorial.html
+
