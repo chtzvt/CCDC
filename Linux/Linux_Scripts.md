@@ -31,6 +31,7 @@ Notes:
 * Change `<user>` to be `root` and any admin user names provided
 * Change `10.X.X` to be actual subnet
 * Change `1..255` to actually represent range of IP addresses in our environment
+* Change `$OP\n$NP\n$NP` to `$NP\n$NP` if <user> == root
 
 ### Copy Keys
 
