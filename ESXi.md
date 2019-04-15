@@ -40,7 +40,18 @@ $ esxcli network firewall ruleset allowedip add --ruleset-id sshServer --ip-addr
 $ esxcli network firewall set -d f
 ```
 
-*Listing the ruleset names:
+* Set the firewall to only allow our teams range to use VSphere Web/Client Access
+```
+$ esxcli network firewall set -d t #Pass Through all traffic(insecure)
+$ esxcli network firewall ruleset allowedip list #Delete other IPs in here
+$ esxcli network firewall ruleset set -r vSphereClient --allowed-all f
+$ esxcli network firewall ruleset set -r webAccess --allowed-all f #6.0 and up
+$ esxcli network firewall ruleset allowedip add -r vSphereClient -i $martin_ip
+$ esxcli network firewall ruleset allowedip add -r webAccess -i $martin_ip
+$ esxcli network firewall set -d f
+```
+
+* Listing the ruleset names:
 ```
 $ esxcli network firewall ruleset list
 ```
