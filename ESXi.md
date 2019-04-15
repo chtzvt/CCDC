@@ -64,6 +64,7 @@ $ esxcli network firewall ruleset allowedip remove --ruleset-id sshServer --ip-a
 ### Recoverable lockdown mode
 
 ##### Setup:
+
 * Change VPX user's shell to '/bin/sh'
 ```
 $ vi /etc/passwd
@@ -72,7 +73,7 @@ $ vi /etc/passwd
 * Change SSH KeyPath in /etc/ssh/sshd_config
 ```
 $ vi /etc/ssh/sshd_config
-Look for AuthorizedKeysFile and change path to /etc/ssh/new-keys-%u/authorized_keys
+Look for AuthorizedKeysFile and change path to one of your datastores (/vmfs/volumes/datastore_name/%u/authorized_keys)
 ```
 
 * Change SSH Port in /etc/ssh/sshd_config
@@ -81,11 +82,12 @@ $ vi /etc/ssh/sshd_config
 Look for Port and change port to 9000
 ```
 
-* Drop SSH keys on VPX user
+* Drop SSH keys for VPX user:
 ```
-$ mkdir /etc/ssh/new-keys-vpxuser  # in the location seen above
-$ vi /etc/ssh/new-keys-vpxuser/authorized_keys  # put keys in here
+$ mkdir /vmfs/volumes/datastore_name/vpxuser/authorized_keys  # in the location seen above
+$ vi /vmfs/volumes/datastore_name/vpxuser/authorized_keys  # put keys in here
 ```
+
 * verify it works by logging in with ssh (From host that has the ssh keypair)
 ```
 $ ssh vpxuser@ESX_IP
