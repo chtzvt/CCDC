@@ -16,7 +16,7 @@ RobbieTw
 2) Download Sysmon v7.01 
 3) Open up command prompt (-n is for network)
 4) `sysmon64.exe -i sysmon-config.xml -n`
-5) add -h MD5,SHA256 if needed
+5) Append "-h MD5,SHA256" if needed
 6) -l for image load events 
 7) Sysmon Logs will be located at 
     - `C:\Windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx`
