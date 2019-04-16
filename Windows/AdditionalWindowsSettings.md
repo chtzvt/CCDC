@@ -44,8 +44,3 @@ Create Default Rules
 Automatically Generate Rules
 ```
 
-### What else should be done?
-\\any ideas
-```
-#	Figure out how else we can do
-```
