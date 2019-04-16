@@ -1,7 +1,7 @@
 ## Powershell Command to change every users password
 Powershell -Command "&{Get-Wmiobject -class -win32_useraccount | foreach-object { net user $_.Name Password }}"
 
-##Security Scripts 
+### Security Scripts 
 reg add "HKEY_Local_Machine\Software\policies\Microsoft\Windows\system" /v EnableSmartScreen /t REG_DWORD /d 2 /f
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters /v SMB1 /t REG_DWORD /d 0 /f 
@@ -24,7 +24,7 @@ netsh advfirewall set allprofiles state on
 
 
 
-##Random AD commands
+## Random AD commands
 set-adaccountpassword -reset -newpassword (convertto-securestring -string Password123! -asplaintext -force) -identity Administrator
 Disable-ADAccount -Identity Administrator
 set-aduser -identity poweruser -cannotchangepassword $true
@@ -43,6 +43,6 @@ Expand-Archive -LiteralPath $env:userprofile\Downloads\Autoruns.zip -Destination
 
 Invoke-WebRequest -usebasicparsing -URI http://raw.githubusercontent.com/MotiBa/Sysmon/master/config_v17.xml -Outfile $env:userprofile\downloads\Sysmon\sysmonconfig.xml
 
-####need to find url of patch
+#### Need to find url of patch
 Invoke-WebRequest -usebasicparsing -URI http://microsoft.com/patches -Outfile $env:userprofile\downloads\ms1710patch.exe
 
