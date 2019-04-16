@@ -695,6 +695,15 @@ $ git diff HEAD HEAD^ files.mark  # Compares current with last
 
 `$ find / -mtime -5`
 
+## Install and configure DNSMasq:
+
+```
+$ sudo systemctl disable systemd-resolved
+$ sudo systemctl stop systemd-resolved
+$ echo "nameserver nameserver-ip" > /etc/resolv.conf
+$ sudo apt-get install dnsmasq
+$ sudo vim /etc/dnsmasq.conf #Have the service listen on the appropriate port and IP
+```
 
 ## Install and Run Wazuh
 ### Install Wazuh-Manager
