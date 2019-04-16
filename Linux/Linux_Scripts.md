@@ -36,7 +36,8 @@ Notes:
 * Change `10.X.X` to be actual subnet
 * Change `1..255` to actually represent range of IP addresses in our environment
 * Change `$OP\n$NP\n$NP` to `$NP\n$NP` if <user> == root
-* IPTables will fail on OpenSUSE and *BSD
+* Need manual password change on *BSD, Solaris
+* Need manual firewall on OpenSUSE (firewalld), *BSD (PfCTL), and Solaris (ipfilter)
 
 ### Copy Keys
 
