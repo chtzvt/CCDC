@@ -25,11 +25,11 @@
 ### SSH Initial Spray
 
 ```
-sudo apt install sshpass pssh
-OP=<old_password>
-NP=<new_password>
-for i in {1..255}; do sshpass -p "$OP" ssh -o StrictHostKeyChecking=no -o ConnectTimeout 10 <user>@10.X.X.$i "echo -e '$OP\n$NP\n$NP' | passwd" && echo 10.X.X.$i >> success & done
-sshpass -p "$OP" pssh -h success -l <user> -t 5 -A "<sudo> /sbin/iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT && <sudo> /sbin/iptables -I INPUT 2 -j DROP"
+$ sudo apt install sshpass pssh
+$ OP=<old_password>
+$ NP=<new_password>
+$ for i in {1..255}; do sshpass -p "$OP" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 <user>@10.X.X.$i "echo -e '$OP\n$NP\n$NP' | passwd" && echo 10.X.X.$i >> success & done
+$ sshpass -p "$NP" parallel-ssh -h success -l <user> -t 5 -A "<sudo> /sbin/iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT && <sudo> /sbin/iptables -I INPUT 2 -j DROP"
 ```
 Notes:
 * Change `<user>` to be `root` and any admin user names provided
