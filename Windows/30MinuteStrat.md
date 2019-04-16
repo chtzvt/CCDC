@@ -24,6 +24,7 @@ Before you do anything remember to use your head and assess the situation. Don't
 - Create the necessary Outbound rules
 - Turn Firewall ON
 - [ ] Change passwords for any service accounts (e.g. mysql, filezilla)
+- [ ] Check for sticky keys backdoor
 
 ## By Minute 20 (20 minutes in)  
 - [ ] Kill all unknown sessions
