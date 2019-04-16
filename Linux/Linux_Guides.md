@@ -8,7 +8,7 @@ A Linux kernel >= 3.13 is required.
 #### For debian based 
 
 ```
-apt install nftables
+$ apt install nftables
 ```
 #### For RHEL
 
@@ -29,7 +29,6 @@ $ emerge --ask net-firewall/nftables
 #### For opensuse:
 ```
 $ zypper install nftables
-
 ```
 ### Use iptables-nft
 
@@ -37,12 +36,11 @@ $ zypper install nftables
 
 ```
 $ iptables-nft -A INPUT -p tcp --dport 22 -j LOG
-
 ```
 #### Save your firewall rules:
 
 ```
-iptables-nft-save
+$ iptables-nft-save
 ```
 
 
@@ -63,15 +61,21 @@ $ iptables -A <INPUT/OUTPUT> -p <tcp/udp> --dport <port> -j ACCEPT
 
 ##### Drop Everything Else:
 
-`$ iptables -A <INPUT/OUTPUT> -j REJECT`
+```
+$ iptables -A <INPUT/OUTPUT> -j REJECT
+```
 
 ##### List Rules:
 
-`$ iptables --line-numbers -vL`
+```
+$ iptables --line-numbers -vL
+```
 
 ##### Show NAT Table:
 
-`$ iptables -t nat -L`
+```
+$ iptables -t nat -L
+```
 
 ##### Forward All Traffic on a Port to Another Server:
 
@@ -93,7 +97,7 @@ $ iptables -I OUTPUT 1 -d 123.456.789.123 -j REJECT
 $ iptables -A OUTPUT -m <uid> -p <tcp/udp> --dport <port> -j ACCEPT
 ```
 
-## Firewall with PfCTL:
+## Firewall with PfCTL (for \*BSD systems):
 
 ### Firewall Service Management:
 
