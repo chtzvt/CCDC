@@ -34,6 +34,10 @@ Before you do anything remember to use your head and assess the situation. Don't
 - net stop server
 - [ ] Check listening ports
 - netstat -ano | findstr /I "listening"
+- [ ] Disable LLMNR
+- Win + R > gpedit.msc
+- Local Computer Policy > Computer Configuration > Administrative Templates > Network > DNS Client
+- "Turn OFF Multicast Name Resolution" _Enable_
 - [ ] Remove unwanted software and services
 
 ## Final 10 Minutes (30 minute) 
