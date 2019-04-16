@@ -76,12 +76,6 @@ $ vi /etc/ssh/sshd_config
 Look for AuthorizedKeysFile and change path to one of your datastores (/vmfs/volumes/datastore_name/%u/authorized_keys)
 ```
 
-* Change SSH Port in /etc/ssh/sshd_config
-```
-$ vi /etc/ssh/sshd_config
-Look for Port and change port to 9000
-```
-
 * Drop SSH keys for VPX user:
 ```
 $ mkdir /vmfs/volumes/datastore_name/vpxuser/authorized_keys  # in the location seen above
