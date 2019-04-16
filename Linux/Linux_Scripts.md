@@ -38,6 +38,11 @@ Notes:
 * Change `$OP\n$NP\n$NP` to `$NP\n$NP` if <user> == root
 * Need manual password change on *BSD, Solaris
 * Need manual firewall on OpenSUSE (firewalld), *BSD (PfCTL), and Solaris (ipfilter)
+ 
+###### Second round
+```
+$ for s in $(cat success); do read pass; echo "Changing $s to $pass"; sshpass -p "$NP" ssh <user>@$s "echo -e '$NP\n$pass\n$pass' | passwd & done
+```
 
 ### Copy Keys
 
