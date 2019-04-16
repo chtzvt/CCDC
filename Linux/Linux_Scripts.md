@@ -16,6 +16,8 @@
   * Username only needed if not `root`
 * Run command on all hosts: `pssh -h <hosts_file> -l <default_username> <command>`
   * Username only needed if not `root`
+  * If `pssh` command doesn't exist, try `parallel-ssh`
+  * `pssh` must be installed before use
 * Run command on one host (ansible): `ansible <hostname> -m raw -a "<command>"`
 * Run command on all hosts (ansible): `ansible all -m raw -a "<command>"`
 * Run ansible playbook: `ansible-playbook name_of_playbook.yml`
@@ -23,15 +25,18 @@
 ### SSH Initial Spray
 
 ```
+sudo apt install sshpass pssh
 OP=<old_password>
 NP=<new_password>
-for i in {1..255}; do sshpass -p '$OP' ssh -o StrictHostKeyChecking=no <user>@10.X.X.$i "echo -e '$OP\n$NP\n$NP' | passwd; iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT; iptables -I INPUT 2 -j DROP" &; done
+for i in {1..255}; do sshpass -p "$OP" ssh -o StrictHostKeyChecking=no -o ConnectTimeout 10 <user>@10.X.X.$i "echo -e '$OP\n$NP\n$NP' | passwd" && echo 10.X.X.$i >> success & done
+sshpass -p "$OP" pssh -h success -l <user> -t 5 -A "<sudo> /sbin/iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT && <sudo> /sbin/iptables -I INPUT 2 -j DROP"
 ```
 Notes:
 * Change `<user>` to be `root` and any admin user names provided
 * Change `10.X.X` to be actual subnet
 * Change `1..255` to actually represent range of IP addresses in our environment
 * Change `$OP\n$NP\n$NP` to `$NP\n$NP` if <user> == root
+* IPTables will fail on OpenSUSE and *BSD
 
 ### Copy Keys
 
