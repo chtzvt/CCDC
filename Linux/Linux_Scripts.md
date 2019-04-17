@@ -41,7 +41,7 @@ Notes:
  
 ###### Second round
 ```
-$ for s in $(cat success); do read pass; echo "Changing $s to $pass"; sshpass -p "$NP" ssh <user>@$s "echo -e '$NP\n$pass\n$pass' | passwd & done
+$ for s in $(cat success); echo "$s:"; do read pass; sshpass -p "$NP" ssh <user>@$s "echo -e '$NP\n$pass\n$pass' | passwd & done
 ```
 
 ### Copy Keys
