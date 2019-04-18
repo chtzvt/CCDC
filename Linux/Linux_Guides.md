@@ -716,7 +716,18 @@ $ cd /var/ossec/bin
 $ ./ossec-control start
 ```
 ### Install Wazuh-Agent
+```
+$ Grab the appropriate package:
+https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-agent/wazuh-agent_3.8.2-1_amd64.deb
+https://packages.wazuh.com/3.x/yum/wazuh-agent-3.8.2-1.x86_64.rpm  
 
+Install the package:
+$ dpkg -i wazuh-agent_3.8.2-1_amd64.deb  
+$ rpm -i wazuh-agent-3.8.2-1.x86_64.rpm
+
+$ cd /var/ossec/bin
+$ ./agent-control -m MANAGER_IP
+```
 
 ## Install and Run Lynis
 ```
