@@ -1,0 +1,421 @@
+set deviceconfig system type static
+set deviceconfig system update-server updates.paloaltonetworks.com
+set deviceconfig system update-schedule threats recurring weekly day-of-week wednesday
+set deviceconfig system update-schedule threats recurring weekly at 01:02
+set deviceconfig system update-schedule threats recurring weekly action download-only
+set deviceconfig system timezone America/New_York
+set deviceconfig system service disable-telnet yes
+set deviceconfig system service disable-icmp no
+set deviceconfig system service disable-userid-service yes
+set deviceconfig system service disable-http-ocsp yes
+set deviceconfig system hostname palo-vm-50
+set deviceconfig system ip-address 192.168.20.15
+set deviceconfig system netmask 255.255.255.0
+set deviceconfig system default-gateway 192.168.20.1
+set deviceconfig system login-banner "UCF CCDC PALO ALTO"
+set deviceconfig system dns-setting servers primary 192.168.20.3
+set deviceconfig system dns-setting servers secondary 1.1.1.1
+set deviceconfig setting config rematch yes
+set deviceconfig setting management hostname-type-in-syslog FQDN
+set deviceconfig setting auto-mac-detect yes
+set deviceconfig setting wildfire file-size-limit pe size-limit 10
+set deviceconfig setting wildfire file-size-limit apk size-limit 10
+set deviceconfig setting wildfire file-size-limit pdf size-limit 500
+set deviceconfig setting wildfire file-size-limit ms-office size-limit 500
+set deviceconfig setting wildfire file-size-limit jar size-limit 1
+set deviceconfig setting wildfire file-size-limit flash size-limit 5
+set deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
+set deviceconfig setting wildfire file-size-limit archive size-limit 10
+set deviceconfig setting wildfire file-size-limit linux size-limit 10
+set network interface ethernet ethernet1/1 comment 20net
+set network interface ethernet ethernet1/1 layer2 lldp enable no
+set network interface ethernet ethernet1/2 comment 50serverside
+set network interface ethernet ethernet1/2 link-state up
+set network interface ethernet ethernet1/2 layer2 lldp enable no
+set network interface ethernet ethernet1/3 comment scrimServerside
+set network interface ethernet ethernet1/3 link-state auto
+set network interface ethernet ethernet1/3 layer2 lldp enable no
+set network interface ethernet ethernet1/4 comment NOPE
+set network interface ethernet ethernet1/4 layer2 lldp enable no
+set network interface tunnel units
+set network interface vlan ipv6 neighbor-discovery router-advertisement enable no
+set network interface vlan ndp-proxy enabled no
+set network interface vlan adjust-tcp-mss enable no
+set network interface vlan units vlan.10 ipv6 neighbor-discovery router-advertisement enable no
+set network interface vlan units vlan.10 ndp-proxy enabled no
+set network interface vlan units vlan.10 adjust-tcp-mss enable no
+set network interface vlan units vlan.10 comment "Vlan Fake 10"
+set network profiles monitor-profile default interval 3
+set network profiles monitor-profile default threshold 5
+set network profiles monitor-profile default action wait-recover
+set network profiles interface-management-profile Mgmt https yes
+set network profiles interface-management-profile Mgmt ssh yes
+set network profiles interface-management-profile Mgmt ping yes
+set network profiles zone-protection-profile LAN flood tcp-syn enable yes
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies alarm-rate 100
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies activate-rate 100
+set network profiles zone-protection-profile LAN flood tcp-syn syn-cookies maximal-rate 100
+set network profiles zone-protection-profile LAN flood udp red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood udp red activate-rate 10000
+set network profiles zone-protection-profile LAN flood udp red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood udp enable yes
+set network profiles zone-protection-profile LAN flood icmp red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood icmp red activate-rate 10000
+set network profiles zone-protection-profile LAN flood icmp red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood icmp enable yes
+set network profiles zone-protection-profile LAN flood icmpv6 red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood icmpv6 red activate-rate 10000
+set network profiles zone-protection-profile LAN flood icmpv6 red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood icmpv6 enable yes
+set network profiles zone-protection-profile LAN flood other-ip red alarm-rate 10000
+set network profiles zone-protection-profile LAN flood other-ip red activate-rate 10000
+set network profiles zone-protection-profile LAN flood other-ip red maximal-rate 40000
+set network profiles zone-protection-profile LAN flood other-ip enable yes
+set network profiles zone-protection-profile LAN scan 8002 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8002 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8002 interval 2
+set network profiles zone-protection-profile LAN scan 8002 threshold 2
+set network profiles zone-protection-profile LAN scan 8001 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8001 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8001 interval 2
+set network profiles zone-protection-profile LAN scan 8001 threshold 2
+set network profiles zone-protection-profile LAN scan 8003 action block-ip track-by source
+set network profiles zone-protection-profile LAN scan 8003 action block-ip duration 1000
+set network profiles zone-protection-profile LAN scan 8003 interval 2
+set network profiles zone-protection-profile LAN scan 8003 threshold 2
+set network profiles zone-protection-profile LAN discard-ip-spoof yes
+set network profiles zone-protection-profile LAN discard-ip-frag yes
+set network profiles zone-protection-profile LAN description UNTRUST
+set network profiles zone-protection-profile LAN scan-white-list VPN ipv4 192.168.60.0/24
+set network profiles zone-protection-profile LAN scan-white-list alex ipv4 192.168.20.181/32
+set network profiles zone-protection-profile LAN discard-strict-source-routing no
+set network profiles zone-protection-profile LAN discard-security yes
+set network profiles zone-protection-profile LAN discard-loose-source-routing no
+set network profiles zone-protection-profile LAN discard-stream-id yes
+set network profiles zone-protection-profile LAN discard-timestamp yes
+set network profiles zone-protection-profile LAN discard-unknown-option yes
+set network profiles zone-protection-profile LAN discard-record-route yes
+set network profiles zone-protection-profile LAN discard-malformed-option yes
+set network profiles zone-protection-profile LAN discard-icmp-ping-zero-id yes
+set network profiles zone-protection-profile LAN discard-icmp-frag yes
+set network profiles zone-protection-profile LAN discard-icmp-large-packet yes
+set network profiles zone-protection-profile LAN discard-icmp-error yes
+set network profiles zone-protection-profile LAN discard-tcp-split-handshake yes
+set network virtual-router Layer2Shit ecmp algorithm ip-modulo
+set network virtual-router Layer2Shit protocol bgp routing-options graceful-restart enable yes
+set network virtual-router Layer2Shit protocol bgp enable no
+set network virtual-router Layer2Shit protocol rip enable no
+set network virtual-router Layer2Shit protocol ospf enable no
+set network virtual-router Layer2Shit protocol ospfv3 enable no
+set network virtual-router Layer2Shit routing-table ip static-route Default path-monitor enable no
+set network virtual-router Layer2Shit routing-table ip static-route Default path-monitor failure-condition any
+set network virtual-router Layer2Shit routing-table ip static-route Default path-monitor hold-time 2
+set network virtual-router Layer2Shit routing-table ip static-route Default nexthop ip-address 192.168.30.1
+set network virtual-router Layer2Shit routing-table ip static-route Default bfd profile None
+set network virtual-router Layer2Shit routing-table ip static-route Default interface vlan
+set network virtual-router Layer2Shit routing-table ip static-route Default metric 10
+set network virtual-router Layer2Shit routing-table ip static-route Default destination 0.0.0.0/0
+set network virtual-router Layer2Shit routing-table ip static-route Default route-table both
+set network virtual-router Layer2Shit interface [ vlan vlan.10 ]
+set network tunnel ipsec
+set network dns-proxy
+set network dhcp interface
+set network virtual-wire
+set network vlan ANY interface [ ethernet1/1 ethernet1/2 ethernet1/3 ]
+set network vlan ANY virtual-interface interface vlan.10
+set shared application
+set shared application-group
+set shared service
+set shared service-group
+set shared botnet configuration http dynamic-dns enabled yes
+set shared botnet configuration http dynamic-dns threshold 5
+set shared botnet configuration http malware-sites enabled yes
+set shared botnet configuration http malware-sites threshold 5
+set shared botnet configuration http recent-domains enabled yes
+set shared botnet configuration http recent-domains threshold 5
+set shared botnet configuration http ip-domains enabled yes
+set shared botnet configuration http ip-domains threshold 10
+set shared botnet configuration http executables-from-unknown-sites enabled yes
+set shared botnet configuration http executables-from-unknown-sites threshold 5
+set shared botnet configuration other-applications irc yes
+set shared botnet configuration unknown-applications unknown-tcp destinations-per-hour 10
+set shared botnet configuration unknown-applications unknown-tcp sessions-per-hour 10
+set shared botnet configuration unknown-applications unknown-tcp session-length maximum-bytes 100
+set shared botnet configuration unknown-applications unknown-tcp session-length minimum-bytes 50
+set shared botnet configuration unknown-applications unknown-udp destinations-per-hour 10
+set shared botnet configuration unknown-applications unknown-udp sessions-per-hour 10
+set shared botnet configuration unknown-applications unknown-udp session-length maximum-bytes 100
+set shared botnet configuration unknown-applications unknown-udp session-length minimum-bytes 50
+set shared botnet report topn 100
+set shared botnet report scheduled yes
+set shared log-settings syslog Martin server 192.168.30.62 transport UDP
+set shared log-settings syslog Martin server 192.168.30.62 port 514
+set shared log-settings syslog Martin server 192.168.30.62 format BSD
+set shared log-settings syslog Martin server 192.168.30.62 server 192.168.30.62
+set shared log-settings syslog Martin server 192.168.30.62 facility LOG_USER
+set shared log-settings system match-list "Syslog to Martin" send-syslog Martin
+set shared log-settings system match-list "Syslog to Martin" filter "All Logs"
+set zone LAN network layer3
+set zone LAN network enable-packet-buffer-protection no
+set zone LAN network zone-protection-profile LAN
+set zone DMZ network layer3
+set zone DMZ network zone-protection-profile LAN
+set zone DMZ network enable-packet-buffer-protection yes
+set zone EXTERNAL network layer3
+set zone EXTERNAL network zone-protection-profile LAN
+set zone 30net network layer2 ethernet1/1
+set zone 30net network enable-packet-buffer-protection no
+set zone 50serverside network layer2 ethernet1/2
+set zone scrimServerSide network layer2 [ ethernet1/3 ethernet1/4 ]
+set zone scrimServerSide network zone-protection-profile LAN
+set service-group
+set service http protocol tcp port 80
+set service DNS protocol udp port 53
+set service DNS protocol udp override no
+set service ldap protocol tcp port 389
+set service ldap protocol tcp override no
+set service smtp protocol tcp port 25
+set service smtp protocol tcp override no
+set service pop3 protocol tcp port 110
+set service pop3 protocol tcp override no
+set service ssh protocol tcp port 22
+set service ssh protocol tcp override no
+set service mysql protocol tcp port 3306
+set service mysql protocol tcp override no
+set service tcpDNS protocol tcp port 53
+set service tcpDNS protocol tcp override no
+set schedule
+set rulebase security rules "Block Troisi" to 50serverside
+set rulebase security rules "Block Troisi" from scrimServerSide
+set rulebase security rules "Block Troisi" source any
+set rulebase security rules "Block Troisi" destination any
+set rulebase security rules "Block Troisi" source-user any
+set rulebase security rules "Block Troisi" category any
+set rulebase security rules "Block Troisi" application any
+set rulebase security rules "Block Troisi" service application-default
+set rulebase security rules "Block Troisi" hip-profiles any
+set rulebase security rules "Block Troisi" action allow
+set rulebase security rules "Block Troisi" icmp-unreachable no
+set rulebase security rules "Block Troisi" disabled yes
+set rulebase security rules "Allow All" to any
+set rulebase security rules "Allow All" from any
+set rulebase security rules "Allow All" destination any
+set rulebase security rules "Allow All" source-user any
+set rulebase security rules "Allow All" category any
+set rulebase security rules "Allow All" application any
+set rulebase security rules "Allow All" service application-default
+set rulebase security rules "Allow All" hip-profiles any
+set rulebase security rules "Allow All" action allow
+set rulebase security rules "Allow All" disabled no
+set rulebase security rules "Allow All" source any
+set rulebase security rules "Allow All" profile-setting group Strict
+set rulebase security rules "ANY intra" to any
+set rulebase security rules "ANY intra" from any
+set rulebase security rules "ANY intra" source any
+set rulebase security rules "ANY intra" destination any
+set rulebase security rules "ANY intra" source-user any
+set rulebase security rules "ANY intra" category any
+set rulebase security rules "ANY intra" application any
+set rulebase security rules "ANY intra" service any
+set rulebase security rules "ANY intra" hip-profiles any
+set rulebase security rules "ANY intra" action allow
+set rulebase security rules "ANY intra" rule-type intrazone
+set rulebase nat rules DB source-translation static-ip translated-address db.1.halcorp.biz
+set rulebase nat rules DB source-translation static-ip bi-directional yes
+set rulebase nat rules DB to EXTERNAL
+set rulebase nat rules DB from DMZ
+set rulebase nat rules DB destination any
+set rulebase nat rules DB service any
+set rulebase nat rules DB disabled yes
+set rulebase nat rules DB source dblocal.1.halcorp.biz
+set rulebase nat rules MANAGER source-translation static-ip translated-address manager.1.halcorp.biz
+set rulebase nat rules MANAGER source-translation static-ip bi-directional yes
+set rulebase nat rules MANAGER to EXTERNAL
+set rulebase nat rules MANAGER from DMZ
+set rulebase nat rules MANAGER destination any
+set rulebase nat rules MANAGER service any
+set rulebase nat rules MANAGER disabled yes
+set rulebase nat rules MANAGER source managerlocal.1.halcorp.biz
+set rulebase nat rules AD source-translation static-ip translated-address ad.1.halcorp.biz
+set rulebase nat rules AD source-translation static-ip bi-directional yes
+set rulebase nat rules AD to EXTERNAL
+set rulebase nat rules AD from DMZ
+set rulebase nat rules AD destination any
+set rulebase nat rules AD service any
+set rulebase nat rules AD disabled yes
+set rulebase nat rules AD source adlocal.1.halcorp.biz
+set rulebase nat rules WWW source-translation static-ip translated-address www.1.halcorp.biz
+set rulebase nat rules WWW source-translation static-ip bi-directional yes
+set rulebase nat rules WWW to EXTERNAL
+set rulebase nat rules WWW from DMZ
+set rulebase nat rules WWW destination any
+set rulebase nat rules WWW service any
+set rulebase nat rules WWW disabled yes
+set rulebase nat rules WWW source wwwlocal.1.halcorp.biz
+set rulebase nat rules MAIL source-translation static-ip translated-address mail.1.halcorp.biz
+set rulebase nat rules MAIL source-translation static-ip bi-directional yes
+set rulebase nat rules MAIL to EXTERNAL
+set rulebase nat rules MAIL from DMZ
+set rulebase nat rules MAIL destination any
+set rulebase nat rules MAIL service any
+set rulebase nat rules MAIL disabled yes
+set rulebase nat rules MAIL source maillocal.1.halcorp.biz
+set rulebase nat rules ECOM source-translation static-ip translated-address ecom.1.halcorp.biz
+set rulebase nat rules ECOM source-translation static-ip bi-directional yes
+set rulebase nat rules ECOM to EXTERNAL
+set rulebase nat rules ECOM from DMZ
+set rulebase nat rules ECOM destination any
+set rulebase nat rules ECOM service any
+set rulebase nat rules ECOM disabled yes
+set rulebase nat rules ECOM source ecomlocal.1.halcorp.biz
+set rulebase nat rules Mediawiki source-translation static-ip translated-address wiki.1.halcorp.local
+set rulebase nat rules Mediawiki source-translation static-ip bi-directional yes
+set rulebase nat rules Mediawiki to EXTERNAL
+set rulebase nat rules Mediawiki from DMZ
+set rulebase nat rules Mediawiki source wikilocal.1.halcorp.biz
+set rulebase nat rules Mediawiki destination any
+set rulebase nat rules Mediawiki service any
+set rulebase nat rules Mediawiki disabled yes
+set rulebase nat rules "Client NAT" to EXTERNAL
+set rulebase nat rules "Client NAT" from DMZ
+set rulebase nat rules "Client NAT" source [ 192.168.50.27/32 192.168.50.100-192.168.50.200 ]
+set rulebase nat rules "Client NAT" destination any
+set rulebase nat rules "Client NAT" service any
+set rulebase nat rules "Client NAT" source-translation dynamic-ip-and-port translated-address gw.1.halcorp.biz
+set rulebase nat rules "Client NAT" disabled yes
+set rulebase dos rules DOS from zone scrimServerSide
+set rulebase dos rules DOS to zone 50serverside
+set rulebase dos rules DOS protection aggregate profile protect
+set rulebase dos rules DOS protection classified classification-criteria address source-ip-only
+set rulebase dos rules DOS protection classified profile DosProfile
+set rulebase dos rules DOS source any
+set rulebase dos rules DOS destination any
+set rulebase dos rules DOS source-user any
+set rulebase dos rules DOS service any
+set rulebase dos rules DOS action protect
+set rulebase dos rules DOS negate-source no
+set rulebase dos rules DOS disabled no
+set rulebase qos rules qos dscp-tos any
+set rulebase qos rules qos from any
+set rulebase qos rules qos to DMZ
+set rulebase qos rules qos source any
+set rulebase qos rules qos destination any
+set rulebase qos rules qos source-user any
+set rulebase qos rules qos category any
+set rulebase qos rules qos application any
+set rulebase qos rules qos service any
+set rulebase qos rules qos action class 1
+set profiles url-filtering C2 credential-enforcement mode disabled
+set profiles url-filtering C2 credential-enforcement log-severity medium
+set profiles url-filtering C2 credential-enforcement block [ abortion abused-drugs command-and-control dating educatio
+nal-institutions ]
+set profiles url-filtering C2 log-http-hdr-xff yes
+set profiles url-filtering C2 log-http-hdr-user-agent yes
+set profiles url-filtering C2 log-http-hdr-referer yes
+set profiles url-filtering C2 log-container-page-only no
+set profiles url-filtering C2 block-list [ ebay.com www.ebay.com ]
+set profiles url-filtering C2 action block
+set profiles url-filtering C2 block [ abortion abused-drugs command-and-control dating educational-institutions ]
+set profiles dos-protection DosProfile flood tcp-syn enable yes
+set profiles dos-protection DosProfile flood tcp-syn red alarm-rate 1000
+set profiles dos-protection DosProfile flood tcp-syn red activate-rate 10000
+set profiles dos-protection DosProfile flood tcp-syn red maximal-rate 10000
+set profiles dos-protection DosProfile flood udp red maximal-rate 40000
+set profiles dos-protection DosProfile flood udp red alarm-rate 10000
+set profiles dos-protection DosProfile flood udp red activate-rate 10000
+set profiles dos-protection DosProfile flood udp enable yes
+set profiles dos-protection DosProfile flood icmp red maximal-rate 40000
+set profiles dos-protection DosProfile flood icmp red alarm-rate 10000
+set profiles dos-protection DosProfile flood icmp red activate-rate 10000
+set profiles dos-protection DosProfile flood icmp enable yes
+set profiles dos-protection DosProfile flood icmpv6 red maximal-rate 40000
+set profiles dos-protection DosProfile flood icmpv6 red alarm-rate 10000
+set profiles dos-protection DosProfile flood icmpv6 red activate-rate 10000
+set profiles dos-protection DosProfile flood icmpv6 enable yes
+set profiles dos-protection DosProfile flood other-ip red maximal-rate 40000
+set profiles dos-protection DosProfile flood other-ip red alarm-rate 10000
+set profiles dos-protection DosProfile flood other-ip red activate-rate 10000
+set profiles dos-protection DosProfile flood other-ip enable yes
+set profiles dos-protection DosProfile resource sessions enabled no
+set profiles dos-protection DosProfile type classified
+set profiles dos-protection protect flood tcp-syn enable yes
+set profiles dos-protection protect flood tcp-syn syn-cookies alarm-rate 100
+set profiles dos-protection protect flood tcp-syn syn-cookies activate-rate 100
+set profiles dos-protection protect flood tcp-syn syn-cookies maximal-rate 100
+set profiles dos-protection protect flood udp red maximal-rate 400
+set profiles dos-protection protect flood udp red alarm-rate 100
+set profiles dos-protection protect flood udp red activate-rate 100
+set profiles dos-protection protect flood udp enable yes
+set profiles dos-protection protect flood icmp red maximal-rate 400
+set profiles dos-protection protect flood icmp red alarm-rate 100
+set profiles dos-protection protect flood icmp red activate-rate 100
+set profiles dos-protection protect flood icmp enable yes
+set profiles dos-protection protect flood icmpv6 red maximal-rate 40000
+set profiles dos-protection protect flood icmpv6 red alarm-rate 10000
+set profiles dos-protection protect flood icmpv6 red activate-rate 10000
+set profiles dos-protection protect flood icmpv6 enable no
+set profiles dos-protection protect flood other-ip red maximal-rate 40000
+set profiles dos-protection protect flood other-ip red alarm-rate 10000
+set profiles dos-protection protect flood other-ip red activate-rate 10000
+set profiles dos-protection protect flood other-ip enable no
+set profiles dos-protection protect resource sessions enabled yes
+set profiles dos-protection protect resource sessions max-concurrent-limit 50000
+set profiles dos-protection protect type aggregate
+set profiles vulnerability "ALL BLOCK" rules ALL action block-ip duration 60
+set profiles vulnerability "ALL BLOCK" rules ALL action block-ip track-by source
+set profiles vulnerability "ALL BLOCK" rules ALL vendor-id any
+set profiles vulnerability "ALL BLOCK" rules ALL severity [ critical high medium low ]
+set profiles vulnerability "ALL BLOCK" rules ALL cve any
+set profiles vulnerability "ALL BLOCK" rules ALL threat-name any
+set profiles vulnerability "ALL BLOCK" rules ALL host any
+set profiles vulnerability "ALL BLOCK" rules ALL category any
+set profiles vulnerability "ALL BLOCK" rules ALL packet-capture disable
+set profiles spyware "ANY BLOCK" botnet-domains lists default-paloalto-dns action sinkhole
+set profiles spyware "ANY BLOCK" botnet-domains sinkhole ipv4-address pan-sinkhole-default-ip
+set profiles spyware "ANY BLOCK" botnet-domains sinkhole ipv6-address ::1
+set profiles spyware "ANY BLOCK" rules ANY action block-ip track-by source
+set profiles spyware "ANY BLOCK" rules ANY action block-ip duration 5
+set profiles spyware "ANY BLOCK" rules ANY severity [ critical high medium ]
+set profiles spyware "ANY BLOCK" rules ANY threat-name any
+set profiles spyware "ANY BLOCK" rules ANY category any
+set profiles spyware "ANY BLOCK" rules ANY packet-capture disable
+set profiles virus "Wildfire Block" decoder smtp action default
+set profiles virus "Wildfire Block" decoder smtp wildfire-action drop
+set profiles virus "Wildfire Block" decoder smb action default
+set profiles virus "Wildfire Block" decoder smb wildfire-action drop
+set profiles virus "Wildfire Block" decoder pop3 action default
+set profiles virus "Wildfire Block" decoder pop3 wildfire-action drop
+set profiles virus "Wildfire Block" decoder imap action default
+set profiles virus "Wildfire Block" decoder imap wildfire-action drop
+set profiles virus "Wildfire Block" decoder http action default
+set profiles virus "Wildfire Block" decoder http wildfire-action drop
+set profiles virus "Wildfire Block" decoder ftp action default
+set profiles virus "Wildfire Block" decoder ftp wildfire-action drop
+set profile-group Strict virus default
+set profile-group Strict spyware "ANY BLOCK"
+set profile-group Strict vulnerability "ALL BLOCK"
+set profile-group Strict url-filtering default
+set profile-group Strict file-blocking "strict file blocking"
+set profile-group Strict wildfire-analysis default
+set import network interface [ ethernet1/1 ethernet1/2 ethernet1/3 ethernet1/4 vlan vlan.10 ]
+set application-group
+set application
+set address gw.1.halcorp.biz ip-netmask 192.168.20.201/32
+set address managerlocal.1.halcorp.biz ip-netmask 192.168.50.99/32
+set address ecom.1.halcorp.biz ip-netmask 192.168.20.220/32
+set address www.1.halcorp.biz ip-netmask 192.168.20.205/32
+set address db.1.halcorp.biz ip-netmask 192.168.20.215/32
+set address ad.1.halcorp.biz ip-netmask 192.168.20.210/32
+set address manager.1.halcorp.biz ip-netmask 192.168.20.209/32
+set address ecomlocal.1.halcorp.biz ip-netmask 192.168.50.20/32
+set address wwwlocal.1.halcorp.biz ip-netmask 192.168.50.5/32
+set address adlocal.1.halcorp.biz ip-netmask 192.168.50.10/32
+set address mail.1.halcorp.biz ip-netmask 192.168.20.225/32
+set address dblocal.1.halcorp.biz ip-netmask 192.168.50.15/32
+set address maillocal.1.halcorp.biz ip-netmask 192.168.50.25/32
+set address wikilocal.1.halcorp.biz ip-netmask 192.168.50.28/32
+set address wiki.1.halcorp.local ip-netmask 192.168.20.230/32
+set address Martinc2 ip-netmask 52.15.39.82/24
+set mgt-config users admin phash $1$ymrfopeg$5VpwTSqzlFxbbuKc9s6yG0
+set mgt-config users admin permissions role-based superuser yes
+set mgt-config users admin public-key RIP
