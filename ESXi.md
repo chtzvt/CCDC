@@ -122,6 +122,15 @@ $ sed -i -e ‘3iauth required pam_google_authenticator.so\’ /etc/pam.d/login
 4. In the Lockdown Mode panel, click Edit.
 5. Click Exception Users and remove users from the list.
 
+##### List Permissions on ESXi
+```
+$ esxcli system permission list
+```
+
+##### List Accounts on ESXi
+```
+$ esxcli system account list
+```
 
 ##### Get VMID's:
 ```
