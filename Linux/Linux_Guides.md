@@ -714,6 +714,19 @@ $ dpkg -i wazuh-manager_3.8.2-1_amd64.deb
 Make sure the service is started(it starts by default)
 $ cd /var/ossec/bin
 $ ./ossec-control start
+
+Add the following to the manager ossec.conf:
+<active-response>
+  <disabled>no</disabled>
+  <command>host-deny</command>
+  <location>defined-agent</location>
+  <agent_id>032</agent_id>
+  <level>10</level>
+  <rules_group>sshd,|pci_dss_11.4,</rules_group>
+  <timeout>1</timeout>
+</active-response>
+
+
 ```
 ### Install Wazuh-Agent
 ```
@@ -725,8 +738,13 @@ Install the package:
 $ dpkg -i wazuh-agent_3.8.2-1_amd64.deb  
 $ rpm -i wazuh-agent-3.8.2-1.x86_64.rpm
 
-$ cd /var/ossec/bin
-$ ./agent-control -m MANAGER_IP
+Add the Manager IP to this file:
+/var/ossec/etc/ossec.conf
+
+Configure the Agent:
+cd /var/ossec/bin
+$ ./agent-auth -m MANAGER_IP
+$ ./ossec-control start 
 ```
 
 ## Install and Run Lynis
