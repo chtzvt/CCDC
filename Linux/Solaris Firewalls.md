@@ -1,4 +1,4 @@
-# Solaris Firewalls :sun: :fire:
+# Solaris Firewalls :fire:
 
 _This KB entry is dedicated to Sun Microsystems (we will always remember you)..._
 
