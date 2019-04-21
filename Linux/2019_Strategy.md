@@ -3,6 +3,7 @@
 ## Starting Off
 
 4 admins:
+
 * 1 Secure local ESXi
 * 1 Secure cloud ESXi
 * 1 Spray SSH script (root & admin users)
