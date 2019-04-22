@@ -716,14 +716,14 @@ $ cd /var/ossec/bin
 $ ./ossec-control start
 
 Add the following to the manager ossec.conf:
+
 <active-response>
-  <disabled>no</disabled>
-  <command>host-deny</command>
-  <location>defined-agent</location>
-  <agent_id>032</agent_id>
-  <level>10</level>
-  <rules_group>sshd,|pci_dss_11.4,</rules_group>
-  <timeout>1</timeout>
+        <disabled>no</disabled>
+        <command>route-null</command>
+        <agent_id>all</agent_id>
+        <location>local</location>
+        <level>4</level>
+        <timeout>600</timeout>
 </active-response>
 
 
