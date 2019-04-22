@@ -114,6 +114,17 @@ while True:
         os.system('wall "suspicious connection from IP: " ' + addr[0])
 ```
 
+### Change SSH Setting
+```
+sed -i -e "/[ ]*$1/ s/^#*/#/" sshd_config
+echo "$1 $2" >> sshd_config
+```
+
+Usage:
+```
+$ ./change_ssh PermitRootLogin no
+```
+
 ### Procedurally Generate Tripwire Configuration
 
 ```
