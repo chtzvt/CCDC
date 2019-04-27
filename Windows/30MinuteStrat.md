@@ -8,7 +8,7 @@ Before you do anything remember to use your head and assess the situation. Don't
 - net user
 - net localgroup
 - [ ] Change passwords
-- net user <username> *
+- net user _username_ *
 - [ ] Create an additional account with creds that we only know. It’s perferable it is named in a way that looks like a system account.
 - [ ] Backup Critical Services (IIS, Websites FTP, Databases)
 - Copy to new directory
