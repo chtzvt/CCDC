@@ -1,0 +1,26 @@
+Enumerate users, groups, and scored services
+Change passwords
+Create an additional account with creds that we only know. It’s perferable it is named in a way that looks like a system account.
+Configure firewall - Rules for RDP and the immportant services.
+Change passwords for any service accounts (e.g. mysql, filezilla)
+Kill unknown sessions
+NLA for RDP
+Disable SMB1.0 -> Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol
+Check listening ports
+Remove unwanted software and services
+Backup services
+Check for Backdoors: Run AV, stickey keys, backdoors in services, Autoruns
+Setup ip blocking software
+Patch Windows and Critical service
+UAC, disable CMD & Powershell (if desired)
+Sysmon
+Configure service to be more secure
+Verify service functionality
+
+Additional software:
+rdguard
+rohos
+malwarebytes
+sysinternals
+EMET
+Upgrade Powershell and WMF
