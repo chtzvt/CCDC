@@ -45,3 +45,5 @@ Connection: Inbound and outbound (for forwarding)
 1. Open up wireshark and start sniffing network traffic
 2. Observe dns traffic by typing in *dns* in the filter
 3. Check what query you are getting and whether you are sendng a response.
+
+Make sure your forwarders are set correctly
