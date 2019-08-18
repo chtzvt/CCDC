@@ -133,7 +133,6 @@ $	sudo vim /etc/nginx/conf.d/ssl.conf
 it should have the following settings:
 ```
 ssl_protocols TLSv1.1 TLSv1.2;
-ssl_prefer_server_ciphers on;
 ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
 ssl_ecdh_curve secp384r1;
 ssl_session_cache shared:SSL:10m;
