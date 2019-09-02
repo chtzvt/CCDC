@@ -37,8 +37,8 @@ $	sudo vim /etc/bind/named.conf.options
 First we will need to specify an Access Contol List (ACL), so we establish who can use this server. We can just add this to the top of the file:
 ```
 acl "servers" {
-	192.168.234.147	#	Our Primary Name Server
-	192.168.234.148	#	Our Secondary Name Server
+	192.168.234.147;	#	Our Primary Name Server
+	192.168.234.148;	#	Our Secondary Name Server
 };
 ```
 
@@ -252,8 +252,8 @@ $	sudo vim /etc/named.conf
 this is the acl which we will be using (only IP addresses in this ACL can query the DNS Server):
 ```
 acl "clients" { // Our acl will be named clients
-	192.168.234.147 // Our First client, which is the authoritative DNS server
-	192.168.234.148 // Our Second client, which is this server
+	192.168.234.147; // Our First client, which is the authoritative DNS server
+	192.168.234.148; // Our Second client, which is this server
 };
 ```
 
@@ -524,8 +524,8 @@ This is a pretty simple fix. In the configuration settings for each zone (`named
 for authoritative servers:
 ```
 acl "servers" {
-    192.168.234.147 
-    192.168.234.148 
+    192.168.234.147; 
+    192.168.234.148;
 };
 
 zone "endless.night.nz" {
