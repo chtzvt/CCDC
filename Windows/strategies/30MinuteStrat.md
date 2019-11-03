@@ -61,7 +61,6 @@ Before you do anything remember to use your head and assess the situation. Don't
 - [ ] Wireshark
 - [ ] Malwarebytes
 - [ ] Sysinternals Suite
-- [ ] OSSEC
 - [ ] EMET (Enhanced Mitigation Experience Toolkit)
 - [ ] Download + Upgrade WMF (Powershell) to version 5.0+
 - [ ] Rohos
