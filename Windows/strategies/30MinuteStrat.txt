@@ -1,5 +1,5 @@
 Enumerate users, groups, and scored services
-Change passwords
+Change passwords Get-Wmiobject -class -win32_useraccount | foreach-object { net user $_.Name Password }
 Create an additional account with creds that we only know. It’s perferable it is named in a way that looks like a system account.
 Configure firewall - Rules for RDP and the immportant services.
 Change passwords for any service accounts (e.g. mysql, filezilla)
