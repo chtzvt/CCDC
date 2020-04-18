@@ -1,0 +1,51 @@
+
+
+ESXI - Shadow copies for migration and uptime
+
+ More work towards inject 00
+
+Inject 4 - Splunk
+- Many systems were missing from out instance (esp windows)
+- Additional points could have come from Windows in cloud especially
+
+Network assessment
+- Color rankings go into the exec summary
+We missed the phones and a bunch of systems
+Missing services
+Recommendations were not prioritized  
+
+
+Bruteforce attacks/prevention
+Tested against our setup, so we hadn't actually implemented it properly
+
+Ransomware inject
+- Weren't able to crack the ZIP password
+
+SSNs - Inject 15
+We were just late on this (could have gotten full credit on this)
+
+Patient portal/TLS
+- Should have been set up under /PATIENT, *not* /PATIENTS
+TLS never worked properly
+
+--- Redteaming stuff
+
+Once he had fallen down to a user-level process we stopped fighting him.
+
+Ecom site
+1. Able to login to a PHP admin account and dump the DB
+2. Able to log in with default credentials
+
+HRM - Able to dump db via esxi
+
+Bravo - Dumped the db
+OTRS - Default creds
+FTP - Default creds
+
+Static site - eternalblue
+Solaris - Default creds
+
+ESXI creds were found through keylogging
+
+CCS Client Info 
+

@@ -1,0 +1,65 @@
+Message actionsHTMLText    Reply to sender Reply to list or to sender and all recipients Forward the message   Open in new window
+Subject: Welcome and Initial Assignments - Session 2
+Contact photo
+From	Hal CISOAdd contact	Date	Today 15:00
+Message Body
+Welcome!                                                              
+
+I know you are joining us here at HAL under less than ideal circumstances.  Your team has been hired to replace an IT group that was terminated for cause.  I won’t go into the details, but they were unable to provide the level of service and support we expect here at HAL.  As a result, you will find that you certainly have your work cut out for you.  We have decided to completely outsource our cloud-based storage and support services, and as such will be provided your department with a set of our standard support servers and systems.   You have inherited a network that is fraught with problems. 
+
+Before you get too far into your first work assignments, since we don’t have time to send your team members off to formal certification classes for the HAL Change Management and Incident Response programs, you will have to make do as best as you can with self-study. You’ll have to juggle these while working on the assignments as well.
+
+You need to have at least two (2) members of your team certified as regional Change Management administrators by studying the CM policies and procedures documents set from my previous email, immediately. They must then take and pass the online quiz earning a 100% before any CM documents will be accepted from your team (as in Task #19-P1). Failure to accomplish this will result in dire consequences for your team, as completion is mandatory. Upon completion of this training one of the CM certified administrators is expected to review and approve all CM forms prior to submission. I would advise against having both your Captain/Co-Captain as CM administrators as their duties may take them away during change management meetings. The CM certification quiz is located at: http://tinyurl.com/HALCMCert. Email the names of your CM certified team members when they have successfully passed the certification exam and within one (1) hour, and include PDFs of proof of completion.
+Similarly, at least two (2) other members of your team (different than the CM administrators) must be certified as Incident Response specialists by studying the IR policies and procedures documents set from my previous email, also immediately. They must then take and pass the online quiz earning a 100% before any IR reports will be accepted from your team. Failure to accomplish this will result in dire consequences against your teams, as completion is mandatory. Upon completion of this training one of the IR certified team members is expected to review and approve all IR forms prior to submission. I would advise against having both your Captain/Co-Captain as IR specialists as their duties may take them away during incidents. The IR certification quiz is located at http://tinyurl.com/HALIRCert. Email the names of your IR certified team members when they have successfully passed the certification exam and within one (1) hourm and include PDFs of proof of completion.
+Here are your first tasks.  Please read the list carefully and note the due times and prerequisite tasks:
+
+Task #19-P1) Initial Configuration of Systems
+Prerequisite Task: None
+Due within: 2 hours of receipt
+Begin by setting up, configuring and hardening the systems and services we will need to continue functioning.  Some of our critical services are currently functioning below full capacity.  Be advised, we have a very strict change management (CM) program here at HAL.  While we’ve temporarily suspended the need to obtain formal corporate approval for today, we do expect you to document, in great detail, exactly what changes you are making to the systems and why.  As soon as all of your servers are fully configured and operational, I expect you email the completed change management logs to the CISO account.  You need to accomplish this within two (2) hours! Make sure you keep updating your CM logs, as you may be expected to continue to make modifications to the systems as the day progresses, but make sure you send us the logs as of the time you declare your servers operational. The change forms were emailed to your accounts previously. Note: this task is a mandatory prerequisite for Tasks -P3, -P4 and -P5.  If you fail to complete this task during the assigned time, it is essential you complete it anyway and submit the required documentation, as you may not receive credit for the other tasks until this task is complete!
+
+Task #19-P2) Setup of Team Accounts
+Prerequisite Task: None
+Due within: 1 hour of receipt
+At the same time, you will need to setup your team up with accounts as new employees ASAP. There are a number of existing employee accounts already in the system – do not delete any existing accounts!  Email the CISO account when you have finished setting up individual accounts for all of your team members on the Webmail server (Fedora VM not www.seccdc.org) & the Active Directory server (2 total).  After all you’re HAL employees now.  This needs to be done within one (1) hour.
+
+Task #19-P3) Malware Scan 
+Prerequisite Task: 19-P1) Initial configuration of systems
+Due within: 3 hours of receipt 
+I have heard reports that many departments have been plagued with malware problems… viruses, worms, backdoors, etc. If you have not done so already, please download and install some form of open source/freeware anti-malware/anti-virus software onto all VM systems and use it to scan all of your servers and the remote Windows client workstation (not your local systems) for any type of malware, unauthorized materials, etc. Email a report to my CISO account within three (3) hours so that I may brief the CEO this afternoon.  In your email, what malware software and strategy you employed and describe what you found. Even if you performed this task previously, update me on what you found.  If you do find any malware or other unauthorized access, systems or applications, please be sure to also report it as specified in HAL’s IR procedures so that we can determine if it’s a pervasive incident. Don’t attempt to complete this task until you’ve completed the initial system configurations (Task #19-P1) on the indicated systems, as otherwise you may introduce new malware. You also have to submit that task first. 
+
+Task #19-P4) System Vulnerability Scan
+Prerequisite Task: 19-P1) Initial configuration of systems.
+Due within: 3 hours of receipt 
+Once you’ve completed your initial system configurations, you will need to conduct a comprehensive systems vulnerability scan. First, ensure suitable logging is enabled on all systems. This will provide critical information.  You may be asked for copies of your system logs in a later report. 
+Download, install and configure Nmap from http://insecure.org and perform a complete systems scan on your MySQL, Webmail, E-commerce & Active Directory/DNS servers. Once you’ve finished the scan, write up a brief summary of the 3 most critical vulnerabilities for each server. The vulnerability report should be organized by server or service and include an overview of what’s wrong, and what you would do to resolve them.  If your scan finds no vulnerabilities on a server after your initial updating, and your scan output supports this, then just note this in your report (as “no vulnerabilities identified”).   
+Don’t just throw the Nmap’s output file at me; let me know what it means.  I need a well written and comprehensive report using the approved HAL memo template, along with your scan output files, emailed to my CISO account within three (3) hours, for a meeting with the CEO. Note you MUST complete Task #19-P1 for the indicated systems before starting this assignment as you may otherwise make changes to a system that introduces new vulnerabilities after the scan, and we’d miss them.  You also have to submit that task first.
+
+Task #19-P5) Wireshark Network Data Capture and Analysis 
+Prerequisite Task: 19-P1) Initial configuration of systems
+Due within: Email of installation/configuration within 3 hours of receipt, final report within 4 hours. 
+I’m concerned that with the extensively misconfigured systems you’ve inherited, there may be some intrusions or data exfiltration. As a result, I think we should periodically review our network traffic to ensure we don’t have compromised systems communicating to a botnet or other aberrant behavior, or intrusion traffic coming through the firewall. I recommend downloading and installing Wireshark on a system. Wireshark is available from www.wireshark.org.
+Note you MUST complete Task #19-P1 for the indicated systems before starting this assignment as you may otherwise make changes to a system that affects the network packet capture, and we’d miss critical data.  You also have to submit that task first.
+Send me an email indicating you’ve installed and configured Wireshark and have begun traffic capture within three (3) hours of receipt of this assignment.  Then you can capture traffic to look for any unusual activity. I think 30 minutes of data collection should be representative. You can leave the application running once you have it configured, but configure it to only save only the last hour of data.
+Write up a report overviewing your experiences, and interpreting the sample traffic. Summarize your recommendations for running the setup permanently. Email a well-written and complete report within four (4) hours of receipt of this assignment, including sample data and analysis. Don’t just throw a data dump at me, interpret it so I can explain any anomalies to the CEO. 
+The CCCO has authorized emergency change conditions for the next 5 hours. You must track and document all changes in the appropriate logs, which may be audited at any time, but do not need a priori permission to make changes to your systems.
+
+Remember to properly format all communications between your team and Headquarters, using the official HAL Memorandum template for reports.  Do not just email us with an attachment with an email body text of “Done”, “See Attached”, or “Completed” etc.  Be professional!
+
+Make sure you maintain the appropriate journals and logs (CM, IR and Password), as we may audit them at any time.
+
+Remember all work assignments will come from and need to be emailed back to my CISO’s account (hal.ciso@seccdc.org) – just hit “Reply to All” when responding so both of us get a copy.  Also remember that all questions need to go to my CIO email account hal.cio@seccdc.org).  You certainly have your work cut out from you, but from what I hear, you are the team to make it happen.  Good luck, and make us proud!
+
+ 
+
+Paula Wilson,
+
+CIO
+
+-- 
+Chief Information Security Officer
+HAL Corporation, INC.
+
+<NOTE BE SURE TO HIT REPLY TO ALL WHEN RESPONDING TO AN ASSIGNMENT>
+This email is a task assignment as part of the Southeast Collegiate Cyber Defense Qualification Competition.  Any reuse or further distribution is prohibited without the expressed permission of the SECCDC Operations group.
+

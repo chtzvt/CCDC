@@ -1,0 +1,68 @@
+Return-Path: <operations@seccdc.org>
+X-Original-To: hal29@seccdc.org
+Delivered-To: hal29@seccdc.org
+Received: from www.seccdc.org (localhost [127.0.0.1])
+	by mail.seccdc.org (Postfix) with ESMTP id 74F9468106A;
+	Sat, 23 Feb 2019 08:14:21 -0500 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Sat, 23 Feb 2019 08:14:21 -0500
+From: SECCDC Operations <operations@seccdc.org>
+To: "HAL Team 01 (AU)" <hal01@seccdc.org>, "HAL Team 02 (APSU)"
+ <hal02@seccdc.org>, "HAL Team 03 (CSU-SC)" <hal03@seccdc.org>, "HAL Team 04
+ (CU)" <hal04@seccdc.org>, "HAL Team 05 (CoC)" <hal05@seccdc.org>, "HAL Team
+ 06 (CSU-Ga)" <hal06@seccdc.org>, "HAL Team 07 (ECPI)" <hal07@seccdc.org>,
+ "HAL Team 08 (FSU)" <hal08@seccdc.org>, "HAL Team 09 (GT)"
+ <hal09@seccdc.org>, "HAL Team 10 (HGTC)" <hal10@seccdc.org>, "HAL Team 11
+ (KSU)" <hal11@seccdc.org>, "HAL Team 12 (LU-Tn)" <hal12@seccdc.org>, "HAL
+ Team 13 (MU)" <hal13@seccdc.org>, "HAL Team 14 (MC)" <hal14@seccdc.org>,
+ "HAL Team 15 (NCAT)" <hal15@seccdc.org>, "HAL Team 16 (UF)"
+ <hal16@seccdc.org>, "HAL Team 21 (LU-SC)" <hal21@seccdc.org>, "HAL Team 22
+ (SCC)" <hal22@seccdc.org>, "HAL Team 23 (SCSU)" <hal23@seccdc.org>, "HAL
+ Team 24 (SPC)" <hal24@seccdc.org>, "HAL Team 25 (TTU)" <hal25@seccdc.org>,
+ "HAL Team 26 (TC)" <hal26@seccdc.org>, "HAL Team 27 (TTC)"
+ <hal27@seccdc.org>, "HAL Team 28 (UA)" <hal28@seccdc.org>, "HAL Team 29
+ (UCF)" <hal29@seccdc.org>, "HAL Team 30 (UNCW)" <hal30@seccdc.org>, "HAL
+ Team 31 (UNF)" <hal31@seccdc.org>, "HAL Team 32 (UNG)" <hal32@seccdc.org>,
+ "HAL Team 33 (USA)" <hal33@seccdc.org>, "HAL Team 34 (USC)"
+ <hal34@seccdc.org>, "HAL Team 35 (USF)" <hal35@seccdc.org>, "HAL Team 36
+ (UTC)" <hal36@seccdc.org>, "HAL Team 37 (UWF)" <hal37@seccdc.org>, "Judge
+ Team 01 (AU)" <judge_01@seccdc.org>, "Judge Team 02 (APSU)"
+ <judge_02@seccdc.org>, "Judge Team 03 (CSU-SC)" <judge_03@seccdc.org>,
+ "Judge Team 04 (CU)" <judge_04@seccdc.org>, "Judge Team 05 (CoC)"
+ <judge_05@seccdc.org>, "Judge Team 06 (CSU-Ga)" <judge_06@seccdc.org>,
+ "Judge Team 07 (ECPI)" <judge_07@seccdc.org>, "Judge Team 08 (FSU)"
+ <judge_08@seccdc.org>, "Judge Team 09 (GT)" <judge_09@seccdc.org>, "Judge
+ Team 10 (HGTC)" <judge_10@seccdc.org>, "Judge Team 11 (KSU)"
+ <judge_11@seccdc.org>, "Judge Team 12 (LU-Tn)" <judge_12@seccdc.org>, "Judge
+ Team 13 (MU)" <judge_13@seccdc.org>, "Judge Team 14 (MC)"
+ <judge_14@seccdc.org>, "Judge Team 15 (NCAT)" <judge_15@seccdc.org>, "Judge
+ Team 16 (UF)" <judge_16@seccdc.org>, "Judge Team 21 (LU-SC)"
+ <judge_21@seccdc.org>, "Judge Team 22 (SCC)" <judge_22@seccdc.org>, "Judge
+ Team 23 (SCSU)" <judge_23@seccdc.org>, "Judge Team 24 (SPC)"
+ <judge_24@seccdc.org>, "Judge Team 25 (TTU)" <judge_25@seccdc.org>, "Judge
+ Team 26 (TC)" <judge_26@seccdc.org>, "Judge Team 27 (TTC)"
+ <judge_27@seccdc.org>, "Judge Team 28 (UA)" <judge_28@seccdc.org>, "Judge
+ Team 29 (UCF)" <judge_29@seccdc.org>, "Judge Team 30 (UNCW)"
+ <judge_30@seccdc.org>, "Judge Team 31 (UNF)" <judge_31@seccdc.org>, "Judge
+ Team 32 (UNG)" <judge_32@seccdc.org>, "Judge Team 33 (USA)"
+ <judge_33@seccdc.org>, "Judge Team 34 (USC)" <judge_34@seccdc.org>, "Judge
+ Team 35 (USF)" <judge_35@seccdc.org>, "Judge Team 36 (UTC)"
+ <judge_36@seccdc.org>, "Judge Team 37 (UWF)" <judge_37@seccdc.org>
+Subject: Github & Pastehub
+Organization: SECCDC
+Message-ID: <077e8a77ddc514133bfc731590e10872@seccdc.org>
+X-Sender: operations@seccdc.org
+User-Agent: Roundcube Webmail/1.1.4
+
+Last minute ruling - Github and Pastebin (along with similar sites) are 
+prohibited.  Teams should not be staging scripts online.
+Dr. Durkee (VM host institution) noted that they block that site from VM 
+systems anyway.
+Ops
+
+
+-- 
+SECCDC Operations

@@ -1,0 +1,29 @@
+I hired you to do a job - as experts, you need to do it.
+
+Received,
+
+Paula
+
+
+---
+/Paula Alexander, CIO
+
+On 2019-02-23 18:49, HAL Team 29 (UCF) wrote:
+Hello,
+
+This is the new system administration team. We have found an
+undocumented machine on our network that was not on our network
+topology received on our first day of work.
+
+The IP address is 172.20.242.101 and it sits on our "USER" subnet. We
+have seen this IP address communicating with potentially malicious
+sites and downloading files that our analysis shows could be malware.
+
+Can you let us know if there is any information about this machine we
+should know.
+
+--
+Thank you,
+
+HAL Team 29
+University of Central Florida

